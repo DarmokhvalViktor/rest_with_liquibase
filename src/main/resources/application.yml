@@ -1,0 +1,33 @@
+spring:
+  config:
+    import: classpath:secrets.yml
+  application:
+    name: "rest_with_liquibase"
+  datasource:
+    url: ${dockerPostgres.url}
+    username: ${dockerPostgres.username}
+    password: ${dockerPostgres.password}
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    baseline-on-migrate: true
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL82Dialect
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+        transaction:
+          interceptor: TRACE

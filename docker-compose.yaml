@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=mydatabase'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=user'
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres_database:/var/lib/postgresql/data
+    restart: on-failure
+
+  backend_app:
+    image: rest_with_liquibase
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app
+    restart: on-failure
+    command: sh -c "/wait-for-it.sh postgres:5432 -- java -jar app.jar"
