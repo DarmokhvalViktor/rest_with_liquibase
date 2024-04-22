@@ -1,4 +1,4 @@
-package com.darmokhval.rest_with_liquibase.FileParser;
+package com.darmokhval.rest_with_liquibase.utility;
 
 import lombok.extern.slf4j.Slf4j;
 

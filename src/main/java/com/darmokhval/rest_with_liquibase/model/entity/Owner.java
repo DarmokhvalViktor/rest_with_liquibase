@@ -1,4 +1,4 @@
-package com.darmokhval.rest_with_liquibase.entity;
+package com.darmokhval.rest_with_liquibase.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

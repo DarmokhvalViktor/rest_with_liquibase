@@ -1,6 +1,5 @@
-package com.darmokhval.rest_with_liquibase.FileParser;
+package com.darmokhval.rest_with_liquibase.utility;
 
-import com.darmokhval.rest_with_liquibase.utility.FileRemover;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;

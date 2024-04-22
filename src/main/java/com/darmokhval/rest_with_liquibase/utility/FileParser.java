@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class FileParser {
@@ -27,24 +28,27 @@ public class FileParser {
 
         long fileSize = file.length();
         int availableProcessors = Runtime.getRuntime().availableProcessors();
-        int numThreads = Math.min(availableProcessors * 2, (int) Math.ceil((double) fileSize / MIN_CHUCK_SIZE));
+        int numThreads = Math.max(1, Math.min(availableProcessors * 2, (int) Math.ceil((double) fileSize / MIN_CHUCK_SIZE)));
         ExecutorService executor = Executors.newFixedThreadPool(numThreads);
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            long offset = 0;
-            for (int i = 0; i < numThreads; i++) {
-                long start = offset;
-                long end = Math.min(start + CHUNK_SIZE, fileSize);
-                executor.execute(() -> processChunk(reader, start, end, searchedField, countFieldMap));
-                offset = end;
-            }
-
-        } catch (IOException e) {
-            log.error("An error occurred while reading from file", e);
+        long offset = 0;
+        for (int i = 0; i < numThreads; i++) {
+            long start = offset;
+            long end = Math.min(start + CHUNK_SIZE, fileSize);
+            executor.execute(() -> processChunk(file, start, end, searchedField, countFieldMap));
+            offset = end;
         }
+
         executor.shutdown();
-        while (!executor.isTerminated()) {
-            System.out.println("Waiting for all thread to finish work...");
+        try {
+            boolean terminated = executor.awaitTermination(1000, TimeUnit.MILLISECONDS);
+            if(!terminated) {
+                System.out.println("Threads are taking too long to finish.");
+                executor.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println("Thread termination was interrupted.");
         }
     }
 
@@ -52,9 +56,8 @@ public class FileParser {
      * method iterates over one file in chunks to reduce RAM consumption, and writes result to a map that passed as argument.
      */
 
-    private void processChunk(BufferedReader reader, long start, long end, String searchedField, Map<String, Integer> countFieldMap) {
-        try {
-            reader.reset();
+    private void processChunk(File file, long start, long end, String searchedField, Map<String, Integer> countFieldMap) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))){
             reader.skip(start);
             long bytesRead = start;
             String line;

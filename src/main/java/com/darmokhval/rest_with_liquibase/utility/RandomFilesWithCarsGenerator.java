@@ -1,6 +1,10 @@
 package com.darmokhval.rest_with_liquibase.utility;
 
 import com.darmokhval.rest_with_liquibase.entity.*;
+import com.darmokhval.rest_with_liquibase.model.entity.CarAccessories;
+import com.darmokhval.rest_with_liquibase.model.entity.CarBrand;
+import com.darmokhval.rest_with_liquibase.model.entity.CarModel;
+import com.darmokhval.rest_with_liquibase.model.entity.Owner;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
@@ -110,7 +114,7 @@ public class RandomFilesWithCarsGenerator {
      * generate random number of accessories, minimum at 2, maximum -> 6
      * @return random number of accessories (in range from 2 to 6), grouped in one string divided by comma ","
      */
-    //    TODO change from enums to records from database.
+    //    TODO change from enums to records from database. Need to deleete these enums from project.
     private String generateRandomAccessoriesString() {
         int numberOfAccessories = random.nextInt(5) + 2;
         StringBuilder accessoriesBuilder = new StringBuilder();

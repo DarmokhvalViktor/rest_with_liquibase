@@ -1,6 +1,7 @@
-package com.darmokhval.rest_with_liquibase.FileParser;
+package com.darmokhval.rest_with_liquibase.utility;
 
 import com.darmokhval.rest_with_liquibase.utility.RandomFilesWithCarsGenerator;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class RandomFilesWithCarsGeneratorTest {
 
     @Test
-    void testWriteFile() throws IOException {
+    void testWriteFile() throws IOException, JSONException {
         // Define test parameters
         int fileNumber = -1;
         String filePath = "src/main/resources/large_car_data_" + fileNumber + ".json";

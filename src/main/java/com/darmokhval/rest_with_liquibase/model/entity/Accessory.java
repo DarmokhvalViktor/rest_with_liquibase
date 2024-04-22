@@ -1,4 +1,4 @@
-package com.darmokhval.rest_with_liquibase.entity;
+package com.darmokhval.rest_with_liquibase.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ public class Accessory {
     private String accessoryName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn("car_id")
+    @JoinColumn(name = "car_id")
     private Car car;
 
 }

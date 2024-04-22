@@ -1,4 +1,4 @@
-package com.darmokhval.rest_with_liquibase.entity;
+package com.darmokhval.rest_with_liquibase.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,15 +22,15 @@ public class Car {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn("brand_id")
+    @JoinColumn(name = "brand_id")
     private Brand brand;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn("model_id")
+    @JoinColumn(name = "model_id")
     private Model model;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn("owner_id")
+    @JoinColumn(name = "owner_id")
     private Owner owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "car")

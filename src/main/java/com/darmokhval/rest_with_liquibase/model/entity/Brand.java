@@ -1,4 +1,4 @@
-package com.darmokhval.rest_with_liquibase.entity;
+package com.darmokhval.rest_with_liquibase.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,18 +15,18 @@ import java.util.Optional;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Model {
+public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String modelName;
+    private String brandName;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "model")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "brand")
     private List<Car> cars = new ArrayList<>();
 
     public void addCar(Car car) {
         this.cars.add(car);
-        car.setModel(this);
+        car.setBrand(this);
     }
 
     public void deleteCar(Long id) {
@@ -35,7 +35,7 @@ public class Model {
                 .findFirst();
         if(carOptional.isPresent()) {
             this.cars.remove(carOptional.get());
-            carOptional.get().setModel(null);
+            carOptional.get().setBrand(null);
         }
     }
 }

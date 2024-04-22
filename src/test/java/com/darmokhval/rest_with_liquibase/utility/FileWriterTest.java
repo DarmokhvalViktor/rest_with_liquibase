@@ -1,10 +1,11 @@
-package com.darmokhval.rest_with_liquibase.FileParser;
+package com.darmokhval.rest_with_liquibase.utility;
 
-import com.darmokhval.utility.FileWriter;
+import com.darmokhval.rest_with_liquibase.utility.FileWriter;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +22,18 @@ public class FileWriterTest {
     @BeforeEach
     void setUp() {
         fileWriter = new FileWriter();
+    }
+
+    @AfterAll
+    static void cleanUp() {
+        File outputFile = new File("src" + File.separator + "main" + File.separator + "resources" + File.separator + "statistics_by_test.xml");
+        if(outputFile.exists()) {
+            if(outputFile.delete()) {
+                System.out.println("File with statistic deleted");
+            } else {
+                System.out.println("FIle with statistic was not deleted");
+            }
+        }
     }
 
     /**
