@@ -1,58 +1,69 @@
 package com.darmokhval.rest_with_liquibase.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "model_id")
     private Model model;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "car")
-    private List<Accessory> accessories = new ArrayList<>();
+//    TODO create indexes in database???
 
+    @ManyToMany(mappedBy = "cars")
+    private Set<Accessory> accessories = new HashSet<>();
+
+    @Positive
     private Integer yearOfRelease;
+    @Positive
     private Integer mileage;
-    private boolean wasInAccident;
+    @NotNull
+    private Boolean wasInAccident;
 
 
+    // Method to add an accessory and ensure bidirectional consistency
     public void addAccessory(Accessory accessory) {
-        this.accessories.add(accessory);
-        accessory.setCar(this);
+        if(!this.accessories.contains(accessory)) {
+            this.accessories.add(accessory);
+            accessory.addCar(this);
+        }
     }
 
-    public void addAccessory(Long id) {
+    // Method to remove an accessory and ensure bidirectional consistency
+    public void removeAccessory(Long id) {
         Optional<Accessory> accessoryOptional = this.accessories.stream()
                 .filter(accessory -> accessory.getId().equals(id))
                 .findFirst();
         if(accessoryOptional.isPresent()) {
-            this.accessories.remove(accessoryOptional.get());
-            accessoryOptional.get().setCar(null);
+            Accessory accessory = accessoryOptional.get();
+            this.accessories.remove(accessory); //remove accessory from car's list
+            accessory.removeCar(this.getId()); //remove car from accessory's list of Cars
         }
     }
 
@@ -63,36 +74,39 @@ public class Car {
 
         Car car = (Car) o;
 
-        if (wasInAccident != car.wasInAccident) return false;
-        if (brand != car.brand) return false;
-        if (model != car.model) return false;
-        if (!Objects.equals(yearOfRelease, car.yearOfRelease)) return false;
+        if (!Objects.equals(id, car.id)) return false;
+        if (!Objects.equals(brand, car.brand)) return false;
+        if (!Objects.equals(model, car.model)) return false;
         if (!Objects.equals(owner, car.owner)) return false;
+        if (!Objects.equals(accessories, car.accessories)) return false;
+        if (!Objects.equals(yearOfRelease, car.yearOfRelease)) return false;
         if (!Objects.equals(mileage, car.mileage)) return false;
-        return Objects.equals(accessories, car.accessories);
+        return Objects.equals(wasInAccident, car.wasInAccident);
     }
 
     @Override
     public int hashCode() {
-        int result = brand != null ? brand.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (brand != null ? brand.hashCode() : 0);
         result = 31 * result + (model != null ? model.hashCode() : 0);
-        result = 31 * result + (yearOfRelease != null ? yearOfRelease.hashCode() : 0);
         result = 31 * result + (owner != null ? owner.hashCode() : 0);
-        result = 31 * result + (mileage != null ? mileage.hashCode() : 0);
         result = 31 * result + (accessories != null ? accessories.hashCode() : 0);
-        result = 31 * result + (wasInAccident ? 1 : 0);
+        result = 31 * result + (yearOfRelease != null ? yearOfRelease.hashCode() : 0);
+        result = 31 * result + (mileage != null ? mileage.hashCode() : 0);
+        result = 31 * result + (wasInAccident != null ? wasInAccident.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Car{" +
-                "brand=" + brand +
+                "id=" + id +
+                ", brand=" + brand +
                 ", model=" + model +
-                ", yearOfRelease=" + yearOfRelease +
                 ", owner=" + owner +
-                ", mileage=" + mileage +
                 ", accessories=" + accessories +
+                ", yearOfRelease=" + yearOfRelease +
+                ", mileage=" + mileage +
                 ", wasInAccident=" + wasInAccident +
                 '}';
     }

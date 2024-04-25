@@ -6,9 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Entity
 @Getter
@@ -19,17 +17,18 @@ public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true, nullable = false)
     private String brandName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "brand")
-    private List<Car> cars = new ArrayList<>();
+    private Set<Car> cars = new HashSet<>();
 
     public void addCar(Car car) {
         this.cars.add(car);
         car.setBrand(this);
     }
 
-    public void deleteCar(Long id) {
+    public void removeCar(Long id) {
         Optional<Car> carOptional = this.cars.stream()
                 .filter(car -> car.getId().equals(id))
                 .findFirst();

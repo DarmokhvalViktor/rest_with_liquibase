@@ -111,6 +111,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<outputDirectory>backend</outputDirectory>
+					<finalName>app</finalName>
 					<layers>
 						<enabled>true</enabled>
 					</layers>

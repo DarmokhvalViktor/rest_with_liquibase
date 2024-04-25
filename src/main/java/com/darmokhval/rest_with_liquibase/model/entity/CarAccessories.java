@@ -1,6 +1,6 @@
 package com.darmokhval.rest_with_liquibase.model.entity;
 
-
+//TODO refactor it into utility directory or just delete it and create Set in Generator class.
 public enum CarAccessories {
     WINDOW_TINTING("window tinting"),
     FLOOR_MATS("floor mats"),

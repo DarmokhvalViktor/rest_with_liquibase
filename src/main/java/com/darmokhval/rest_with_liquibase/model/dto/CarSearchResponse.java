@@ -1,16 +1,16 @@
 package com.darmokhval.rest_with_liquibase.model.dto;
 
 import com.darmokhval.rest_with_liquibase.model.entity.Car;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.domain.Page;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CarSearchResponse {
-    private Page<Car> cars;
+//    TODO not in a use for now. Page instead.
+    private Page<CarDTO> cars;
     private int currentPage;
     private int totalPages;
     private long totalElements;

@@ -1,6 +1,5 @@
 package com.darmokhval.rest_with_liquibase.utility;
 
-import com.darmokhval.rest_with_liquibase.entity.*;
 import com.darmokhval.rest_with_liquibase.model.entity.CarAccessories;
 import com.darmokhval.rest_with_liquibase.model.entity.CarBrand;
 import com.darmokhval.rest_with_liquibase.model.entity.CarModel;
