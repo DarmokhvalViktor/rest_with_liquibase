@@ -52,7 +52,7 @@ public class OwnerService {
 
             return ownerMapper.convertOwnerToDTO(owner);
         } else {
-            throw new IllegalArgumentException(String.format("Owner with id %s was not found!", id));
+            throw new IllegalArgumentException(String.format("Owner with ID %s was not found!", id));
         }
     }
 
@@ -76,7 +76,7 @@ public class OwnerService {
     public String deleteOwner(Long id) {
         Optional<Owner> existingOwner = ownerRepository.findById(id);
         if(existingOwner.isEmpty()) {
-            throw new IllegalArgumentException(String.format("Owner with id %s was not found!", id));
+            throw new IllegalArgumentException(String.format("Owner with ID %s was not found!", id));
         }
 
         Owner owner = existingOwner.get();
@@ -90,6 +90,6 @@ public class OwnerService {
         }
 
         ownerRepository.deleteById(id);
-        return String.format("Owner with id %s was successfully deleted!", id);
+        return String.format("Owner with ID %s was successfully deleted!", id);
     }
 }

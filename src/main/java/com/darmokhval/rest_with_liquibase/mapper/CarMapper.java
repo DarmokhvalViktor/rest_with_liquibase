@@ -17,10 +17,6 @@ public class CarMapper {
 //    TODO validation of carDTO, make sure that we passing valid data.
 //    TODO dto to entity only when saving???
 //    TODO entity to dto, for retrieving
-//    public Car carDTOToEntity(CarDTO carDTO) {
-//        return Car.builder()
-//                .build();
-//    }
 
     public CarDTOLight carEntityToDTOLight(Car car) {
         CarDTOLight carDTO = new CarDTOLight();

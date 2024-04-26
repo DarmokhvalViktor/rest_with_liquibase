@@ -2,6 +2,7 @@ package com.darmokhval.rest_with_liquibase.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -33,6 +34,13 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.toList());
 
         return formErrorResponse(HttpStatus.BAD_REQUEST, errorMessages, request);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Map<String, Object>> handleHttpMessageNotReadableException(
+            HttpMessageNotReadableException exception, WebRequest request) {
+        String errorMessage = String.format("Invalid request data: %s", exception.getMessage());
+        return formErrorResponse(HttpStatus.BAD_REQUEST, errorMessage, request);
     }
 
     private ResponseEntity<Map<String, Object>> formErrorResponse(

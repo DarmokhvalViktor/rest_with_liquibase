@@ -34,5 +34,16 @@ public class CarController {
             @PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(carService.findCar(id));
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<CarDTO> updateCar(
+            @RequestBody @Valid CarDTO carDTO,
+            @PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(carService.updateCar(carDTO, id));
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCar(
+            @PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(carService.deleteCar(id));
+    }
 
 }

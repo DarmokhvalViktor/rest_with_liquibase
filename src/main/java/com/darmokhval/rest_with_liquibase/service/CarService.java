@@ -11,7 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,24 +40,52 @@ public class CarService {
 
 //    Creating, valid fields.
     public CarDTO createCar(CarDTO carDTO) {
+        Car car = new Car();
+        assignValuesToCarEntityIfValid(carDTO, car);
+        car = carRepository.save(car);
+        return carMapper.carEntityToDTO(car);
+    }
+
+    public CarDTOFullInfo findCar(Long id) {
+        Car car = carRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException(String.format("Car with ID %d was not found", id)));
+        return carMapper.carEntityToFullDTO(car);
+    }
+
+    //update working.
+    public CarDTO updateCar(CarDTO carDTO, Long id) {
+        Car car = carRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException(String.format("Car with ID %d was not found", id)));
+        assignValuesToCarEntityIfValid(carDTO, car);
+        car = carRepository.save(car);
+        return carMapper.carEntityToDTO(car);
+    }
+
+    /**
+     * Method, receives dto and checks if data correct. If yes -> populate car entity passed as 2nd arg.
+     * @param carDTO clients input to get data from
+     * @param car resulting entity that will be returned in successful case
+     * @throws IllegalArgumentException if argument can't be validated.
+     */
+    private void assignValuesToCarEntityIfValid(CarDTO carDTO, Car car) {
+        detachUnwantedAccessories(carDTO, car);
         Model model = modelRepository.findById(carDTO.getModelId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid model ID"));
         Brand brand = brandRepository.findById(carDTO.getBrandId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid brand ID"));
         Owner owner = ownerRepository.findById(carDTO.getOwnerId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid owner ID"));
-        Set<Accessory> accessories = new HashSet<>();
-        for(Long id: carDTO.getAccessoriesIds()) {
-            Accessory accessory = accessoryRepository.findById(id)
+        Set<Accessory> newAccessories = new HashSet<>();
+        for(Long accessoryId: carDTO.getAccessoriesIds()) {
+            Accessory accessory = accessoryRepository.findById(accessoryId)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid accessory ID"));
-            accessories.add(accessory);
+            newAccessories.add(accessory);
         }
-
-        Car car = new Car();
+        validateYearOfRelease(carDTO.getYearOfRelease());
         car.setBrand(brand);
         car.setModel(model);
         car.setOwner(owner);
-        car.setAccessories(accessories);
+        car.setAccessories(newAccessories);
         car.setYearOfRelease(carDTO.getYearOfRelease());
         car.setMileage(carDTO.getMileage());
         car.setWasInAccident(carDTO.getWasInAccident());
@@ -63,22 +93,44 @@ public class CarService {
         model.addCar(car);
         brand.addCar(car);
         owner.addCar(car);
-        for (Accessory accessory: accessories) {
+        for (Accessory accessory: newAccessories) {
             accessory.addCar(car);
         }
-
-        car = carRepository.save(car);
-        return carMapper.carEntityToDTO(car);
     }
 
-    public CarDTOFullInfo findCar(Long id) {
-        Optional<Car> optionalCar = carRepository.findById(id);
-        if(optionalCar.isPresent()) {
-            return carMapper.carEntityToFullDTO(optionalCar.get());
-        } else {
-            throw new IllegalArgumentException(String.format("Car with id %d was not found", id));
+    /**
+     * In this method we are detaching entities/removing if they are not in a new Set passed by user.
+     */
+    private void detachUnwantedAccessories(CarDTO carDTO, Car car) {
+        Set<Long> newAccessoryIds = new HashSet<>(carDTO.getAccessoriesIds());
+        Set<Accessory> tempSet = new HashSet<>(car.getAccessories());
+        for (Accessory existingAccessory : tempSet) {
+            if (!newAccessoryIds.contains(existingAccessory.getId())) {
+                car.removeAccessory(existingAccessory.getId());
+                existingAccessory.removeCar(car.getId());
+            }
         }
     }
+
+    private void validateYearOfRelease(int year) {
+        int currentYear = LocalDate.now().getYear();
+        if (year > currentYear) {
+            throw new IllegalArgumentException("Year of release cannot be greater than the current year.");
+        }
+    }
+
+    //    Working, delete if exists, when wrong id handled too.
+    public String deleteCar(Long id) {
+        if(id == null) {
+            throw new IllegalArgumentException("Car ID must be not null.");
+        }
+        if(!carRepository.existsById(id)) {
+            throw new IllegalArgumentException(String.format("Car with ID %d was not found.", id));
+        }
+        carRepository.deleteById(id);
+        return String.format("Car with ID %d was deleted!", id);
+    }
+
 
     private PaginationConfig checkIfPaginationPresent(CarSearchRequest request) {
         if(request.getPaginationConfig() == null) {
@@ -157,6 +209,4 @@ public class CarService {
         }
         return spec;
     }
-
-
 }
