@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter
@@ -29,13 +26,13 @@ public class Accessory {
             joinColumns = @JoinColumn(name = "accessory_id"),
             inverseJoinColumns = @JoinColumn(name = "car_id")
     )
-    private Set<Car> cars = new HashSet<>();
+    private List<Car> cars = new ArrayList<>();
 
     // Method to add a car and ensure bidirectional consistency
     public void addCar(Car car) {
         if (!this.cars.contains(car)) {
-            this.cars.add(car); // Add to the Accessory's list of Cars
-            car.addAccessory(this); // Add to the Car's list of Accessories
+            this.cars.add(car);
+            car.getAccessories().add(this);
         }
     }
 
@@ -48,7 +45,25 @@ public class Accessory {
         if(carOptional.isPresent()) {
             Car car = carOptional.get();
             cars.remove(car);
-            car.removeAccessory(this.getId());
+            car.getAccessories().remove(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Accessory accessory = (Accessory) o;
+
+        if (!Objects.equals(id, accessory.id)) return false;
+        return Objects.equals(accessoryName, accessory.accessoryName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (accessoryName != null ? accessoryName.hashCode() : 0);
+        return result;
     }
 }

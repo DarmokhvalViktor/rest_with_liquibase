@@ -55,7 +55,7 @@ public class CarMapper {
         carDTO.setMileage(car.getMileage());
         carDTO.setWasInAccident(car.getWasInAccident());
         carDTO.setYearOfRelease(car.getYearOfRelease());
-        Set<AccessoryDTO> accessoryDTOS = new HashSet<>();
+        List<AccessoryDTO> accessoryDTOS = new ArrayList<>();
         for(Accessory accessory: car.getAccessories()) {
             accessoryDTOS.add(accessoryEntityToDTO(accessory));
         }

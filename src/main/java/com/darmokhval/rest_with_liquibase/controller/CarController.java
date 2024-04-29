@@ -8,9 +8,13 @@ import com.darmokhval.rest_with_liquibase.service.CarService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 
 @RestController
@@ -24,6 +28,21 @@ public class CarController {
             @RequestBody(required = false) CarSearchRequest request) {
         return ResponseEntity.status(HttpStatus.OK).body(carService.findCars(request));
     }
+    @PostMapping("/_report")
+    public ResponseEntity<byte[]> downloadCarData(
+            @RequestBody(required = false) CarSearchRequest request) {
+        String result = carService.getCarsReport(request);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_TYPE, "text/csv");
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=report.csv");
+        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(result.getBytes());
+    }
+    @PostMapping("/upload")
+    public ResponseEntity<Map<String, Long>> populateDatabaseFromFile(
+            @RequestPart("file")MultipartFile multipartFile) {
+        return ResponseEntity.status(HttpStatus.OK).body(carService.populateDatabaseFromFile(multipartFile));
+    }
+
     @PostMapping()
     public ResponseEntity<CarDTO> createCar(
             @RequestBody @Valid CarDTO carDTO) {

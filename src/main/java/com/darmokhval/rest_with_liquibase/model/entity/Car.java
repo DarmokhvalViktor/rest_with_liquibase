@@ -37,7 +37,7 @@ public class Car {
 //    TODO create indexes in database???
 
     @ManyToMany(mappedBy = "cars")
-    private Set<Accessory> accessories = new HashSet<>();
+    private List<Accessory> accessories = new ArrayList<>();
 
     @Positive
     private Integer yearOfRelease;
@@ -51,7 +51,7 @@ public class Car {
     public void addAccessory(Accessory accessory) {
         if(!this.accessories.contains(accessory)) {
             this.accessories.add(accessory);
-            accessory.addCar(this);
+            accessory.getCars().add(this);
         }
     }
 
@@ -63,7 +63,7 @@ public class Car {
         if(accessoryOptional.isPresent()) {
             Accessory accessory = accessoryOptional.get();
             this.accessories.remove(accessory); //remove accessory from car's list
-            accessory.removeCar(this.getId()); //remove car from accessory's list of Cars
+            accessory.getCars().remove(this); //remove car from accessory's list of Cars
         }
     }
 
@@ -78,7 +78,6 @@ public class Car {
         if (!Objects.equals(brand, car.brand)) return false;
         if (!Objects.equals(model, car.model)) return false;
         if (!Objects.equals(owner, car.owner)) return false;
-        if (!Objects.equals(accessories, car.accessories)) return false;
         if (!Objects.equals(yearOfRelease, car.yearOfRelease)) return false;
         if (!Objects.equals(mileage, car.mileage)) return false;
         return Objects.equals(wasInAccident, car.wasInAccident);
@@ -90,7 +89,6 @@ public class Car {
         result = 31 * result + (brand != null ? brand.hashCode() : 0);
         result = 31 * result + (model != null ? model.hashCode() : 0);
         result = 31 * result + (owner != null ? owner.hashCode() : 0);
-        result = 31 * result + (accessories != null ? accessories.hashCode() : 0);
         result = 31 * result + (yearOfRelease != null ? yearOfRelease.hashCode() : 0);
         result = 31 * result + (mileage != null ? mileage.hashCode() : 0);
         result = 31 * result + (wasInAccident != null ? wasInAccident.hashCode() : 0);

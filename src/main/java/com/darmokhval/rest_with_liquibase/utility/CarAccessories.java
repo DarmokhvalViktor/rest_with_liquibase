@@ -1,4 +1,4 @@
-package com.darmokhval.rest_with_liquibase.model.entity;
+package com.darmokhval.rest_with_liquibase.utility;
 
 //TODO refactor it into utility directory or just delete it and create Set in Generator class.
 public enum CarAccessories {

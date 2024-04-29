@@ -1,4 +1,4 @@
-package com.darmokhval.rest_with_liquibase.model.entity;
+package com.darmokhval.rest_with_liquibase.utility;
 
 public enum CarModel {
     COROLLA,

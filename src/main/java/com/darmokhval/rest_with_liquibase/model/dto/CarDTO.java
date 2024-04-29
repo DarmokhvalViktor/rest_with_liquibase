@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.Year;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -34,7 +35,7 @@ public class CarDTO {
     @NotEmpty(message = "List accessoriesIds must not be empty")
     @Size(min = 2, message = "List accessoriesIds must contain at least 2 items")
     private List<
-            @NotNull (message = "Accessory ID shouldn't be null.")
-            @Positive (message = "Accessory ID must be positive.")
-                    Long> accessoriesIds;
+                @NotNull (message = "Accessory ID shouldn't be null.")
+                @Positive (message = "Accessory ID must be positive.")
+                        Long> accessoriesIds;
 }

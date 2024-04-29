@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -21,5 +22,5 @@ public class CarDTOFullInfo {
     private Integer yearOfRelease;
     private Integer mileage;
     private Boolean wasInAccident;
-    private Set<AccessoryDTO> accessoryDTOList;
+    private List<AccessoryDTO> accessoryDTOList;
 }

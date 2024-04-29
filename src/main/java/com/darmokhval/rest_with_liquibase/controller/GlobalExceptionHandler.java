@@ -1,5 +1,6 @@
 package com.darmokhval.rest_with_liquibase.controller;
 
+import com.darmokhval.rest_with_liquibase.exception.IOFileException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -41,6 +42,12 @@ public class GlobalExceptionHandler {
             HttpMessageNotReadableException exception, WebRequest request) {
         String errorMessage = String.format("Invalid request data: %s", exception.getMessage());
         return formErrorResponse(HttpStatus.BAD_REQUEST, errorMessage, request);
+    }
+
+    @ExceptionHandler(IOFileException.class)
+    public ResponseEntity<Map<String, Object>> handleCSVGenerationException(
+            IOFileException exception, WebRequest request) {
+        return formErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage(), request);
     }
 
     private ResponseEntity<Map<String, Object>> formErrorResponse(

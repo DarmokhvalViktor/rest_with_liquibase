@@ -36,7 +36,7 @@ CREATE TABLE car (
      was_in_accident BOOLEAN,
      FOREIGN KEY (brand_id) REFERENCES brand(id),
      FOREIGN KEY (model_id) REFERENCES model(id),
-     FOREIGN KEY (owner_id) REFERENCES owner(id) ON DELETE CASCADE
+     FOREIGN KEY (owner_id) REFERENCES owner(id)
 );
 
 CREATE INDEX idx_car_brand_id ON car(brand_id);
@@ -55,7 +55,7 @@ CREATE TABLE car_accessory (
     car_id BIGINT,
     PRIMARY KEY (accessory_id, car_id),
     FOREIGN KEY (accessory_id) REFERENCES accessory(id),
-    FOREIGN KEY (car_id) REFERENCES car(id) ON DELETE CASCADE
+    FOREIGN KEY (car_id) REFERENCES car(id)
 );
 
 -- Insert data into 'brand'

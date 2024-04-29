@@ -70,8 +70,6 @@ public class OwnerService {
         }
     }
 
-//    TODO when in SQL specified "ON DELETE CASCADE" it deletes all that needed.
-//     But this seems to be bad practice.
     @Transactional
     public String deleteOwner(Long id) {
         Optional<Owner> existingOwner = ownerRepository.findById(id);
@@ -81,12 +79,12 @@ public class OwnerService {
 
         Owner owner = existingOwner.get();
 
-        List<Car> cars = new ArrayList<>(owner.getCars());
-        for (Car car: cars) {
-            for(Accessory accessory: car.getAccessories()) {
-//                car.removeAccessory(accessory.getId());
+        for (Car car: new ArrayList<>(owner.getCars())) {
+            for(Accessory accessory: new ArrayList<>(car.getAccessories())) {
+                car.removeAccessory(accessory.getId());
+                accessory.removeCar(car.getId());
             }
-//            owner.removeCar(car.getId());
+            owner.removeCar(car.getId());
         }
 
         ownerRepository.deleteById(id);
