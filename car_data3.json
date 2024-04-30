@@ -1,0 +1,53 @@
+[
+  {
+    "invalidRecord": "invalidFields"
+  },
+  {
+    "accessoriesIds": [
+      5,
+      11,
+      8,
+      7,
+      1
+    ],
+    "yearOfRelease": 1997,
+    "modelId": 8,
+    "wasInAccident": true,
+    "brandId": 25,
+    "ownerId": 3,
+    "mileage": 40191
+  },
+  [{
+    "accessoriesIds": [
+      5,
+      11,
+      8,
+      7,
+      1
+    ],
+    "InvalidRecord": "Valid_entity_inside_array",
+    "yearOfRelease": 1973,
+    "modelId": 8,
+    "wasInAccident": true,
+    "brandId": 25,
+    "ownerId": 3,
+    "mileage": 40191
+  }
+  ],
+  {
+    "accessoriesIds": [
+      5,
+      11,
+      8,
+      7,
+      1
+    ],
+    "InvalidField": "Additional_field_ignored_upon_serialization",
+    "yearOfRelease": 1995,
+    "modelId": 2,
+    "wasInAccident": true,
+    "brandId": 24,
+    "ownerId": 1,
+    "mileage": 401491
+  }
+]

@@ -20,7 +20,6 @@ public class Owner {
 
     @NotBlank(message = "Name shouldn't be blank!")
     private String name;
-//    TODO add email, ensure that it's unique. Add more validation.
 
     @NotBlank(message = "Email shouldn't be blank!")
     @Email(message = "Provided email is not valid")
@@ -32,6 +31,12 @@ public class Owner {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", orphanRemoval = true)
     private Set<Car> cars = new HashSet<>();
+
+    public Owner(String name, String email, String lastname) {
+        this.name = name;
+        this.email = email;
+        this.lastname = lastname;
+    }
 
     public void addCar(Car car) {
         this.cars.add(car);

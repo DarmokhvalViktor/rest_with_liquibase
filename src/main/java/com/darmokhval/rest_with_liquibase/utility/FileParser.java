@@ -1,90 +1,112 @@
 package com.darmokhval.rest_with_liquibase.utility;
 
+import com.darmokhval.rest_with_liquibase.exception.IOFileException;
+import com.darmokhval.rest_with_liquibase.model.dto.CarDTO;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.StreamReadFeature;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.Set;
 
-@Slf4j
+/**
+ * class for parsing .json file and convert records into CarDTO objects.
+ */
+@Component
+@RequiredArgsConstructor
 public class FileParser {
-    private static final int CHUNK_SIZE = 50 * 1024 * 1024; //50MB chunk size for thread to process;
-    private static final int MIN_CHUCK_SIZE = 50 * 1024 * 1024; //Minimum file size to use multiple threads
+    private final ObjectMapper objectMapper;
 
-    /** calls method that parse file and writes data in a map.
-     * if file size > 50mb, creates more threads to speed up parsing process.
-     */
-    public void parseFile(File file, String searchedField, Map<String, Integer> countFieldMap) {
-        if (!checkFileIfJson(file)) {
-            return;
+    public long readFromFile2(MultipartFile multipartFile, Set<CarDTO> carDTOList, Long failedWrites) {
+        if (multipartFile == null) {
+            throw new IllegalArgumentException("MultipartFile should not be null.");
         }
 
-        long fileSize = file.length();
-        int availableProcessors = Runtime.getRuntime().availableProcessors();
-        int numThreads = Math.max(1, Math.min(availableProcessors * 2, (int) Math.ceil((double) fileSize / MIN_CHUCK_SIZE)));
-        ExecutorService executor = Executors.newFixedThreadPool(numThreads);
-
-        long offset = 0;
-        for (int i = 0; i < numThreads; i++) {
-            long start = offset;
-            long end = Math.min(start + CHUNK_SIZE, fileSize);
-            executor.execute(() -> processChunk(file, start, end, searchedField, countFieldMap));
-            offset = end;
-        }
-
-        executor.shutdown();
         try {
-            boolean terminated = executor.awaitTermination(1000, TimeUnit.MILLISECONDS);
-            if(!terminated) {
-                System.out.println("Threads are taking too long to finish.");
-                executor.shutdownNow();
-            }
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            System.out.println("Thread termination was interrupted.");
-        }
-    }
+            JsonNode rootNode = objectMapper.readTree(multipartFile.getInputStream());
 
-    /**
-     * method iterates over one file in chunks to reduce RAM consumption, and writes result to a map that passed as argument.
-     */
+            if (rootNode.isArray()) {
+                for (JsonNode node : rootNode) {
+                    try {
+                        CarDTO carDTO = objectMapper.treeToValue(node, CarDTO.class);
 
-    private void processChunk(File file, long start, long end, String searchedField, Map<String, Integer> countFieldMap) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))){
-            reader.skip(start);
-            long bytesRead = start;
-            String line;
-            while((line = reader.readLine()) != null && bytesRead < end) {
-                ObjectMapper mapper = new ObjectMapper();
-                JsonNode rootNode = mapper.readTree(line);
-                String fieldValue = rootNode.path(searchedField).asText();
-                String[] fieldValues = fieldValue.split(",\\s*");
-                for (String value: fieldValues) {
-                    if (!searchedField.equals(value.trim())) {
-                        countFieldMap.merge(value.trim(), 1, Integer::sum);
+                        if (isValid(carDTO)) {
+                            carDTOList.add(carDTO);
+                        } else {
+                            failedWrites++;
+                        }
+                    } catch (Exception e) {
+                        // Log or increment the failure counter and skip this record
+                        failedWrites++;
+                        System.err.println("Skipping invalid record: " + e.getMessage());
                     }
                 }
-                bytesRead += line.length() + System.lineSeparator().length();
+            } else {
+                throw new IllegalArgumentException("Expected a JSON array.");
             }
         } catch (IOException e) {
-            log.error("An error occurred while reading from a file", e);
+            throw new RuntimeException("Error reading from file", e);
         }
 
+        return failedWrites;
     }
 
     /**
-     * checks if file exactly in .json format
-     * @param file file to check
-     * @return false if file is not json
+     * method specifies objectMapper configuration, throws exception if error while reading from a file.
+     * In successful case populates list with a valid data from a file. List is passed as argument.
      */
-    private boolean checkFileIfJson(File file) {
-        return file != null && file.getName().endsWith(".json");
+    public long readFromFile(MultipartFile multipartFile, Set<CarDTO> carDTOList, long failedWrites) {
+        if (multipartFile == null) {
+            throw new IOFileException("MultipartFile is null");
+        }
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
+        try {
+            failedWrites = parseData(multipartFile, carDTOList, failedWrites);
+        } catch (IOException e) {
+            throw new IOFileException(String.format("Error occurred while trying to read a file %s",
+                    multipartFile.getName()));
+        }
+        return failedWrites;
+    }
+
+    /**
+     * method reads file and writes valid records into list that passed as argument.
+     * returns Long number how many records were not valid/incomplete
+     */
+    private long parseData(MultipartFile multipartFile, Set<CarDTO> carDTOList, long failedWrites) throws IOException {
+        JsonNode jsonNode = objectMapper.readTree(multipartFile.getInputStream());
+        System.out.println(jsonNode);
+        for (JsonNode node : jsonNode) {
+            System.out.println(node);
+            try {
+                // Attempt to deserialize each JSON node into a CarDTO
+                CarDTO carDTO = objectMapper.treeToValue(node, CarDTO.class);
+                if(!isValid(carDTO)) {
+                    failedWrites++;
+                    continue;
+                }
+                carDTOList.add(carDTO);
+            } catch (Exception e) {
+                failedWrites++;
+            }
+        }
+        return failedWrites;
+    }
+    private boolean isValid(CarDTO carDTO) {
+        // Perform explicit checks for required fields
+        return carDTO.getModelId() != null && carDTO.getModelId() > 0
+                && carDTO.getBrandId() != null && carDTO.getBrandId() > 0
+                && carDTO.getOwnerId() != null && carDTO.getOwnerId() > 0
+                && carDTO.getYearOfRelease() != null && carDTO.getYearOfRelease() >= 1970
+                && carDTO.getMileage() != null && carDTO.getMileage() > 0
+                && carDTO.getWasInAccident() != null
+                && carDTO.getAccessoriesIds() != null
+                && carDTO.getAccessoriesIds().size() >= 2;
     }
 }

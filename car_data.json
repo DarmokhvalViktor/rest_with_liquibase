@@ -1,0 +1,2830 @@
+[
+  {
+    "accessoriesIds": [
+      13,
+      13,
+      8,
+      13,
+      1
+    ],
+    "yearOfRelease": 1973,
+    "modelId": 8,
+    "wasInAccident": true,
+    "brandId": 25,
+    "ownerId": 3,
+    "mileage": 40191
+  },
+  {
+    "accessoriesIds": [
+      6,
+      10,
+      9,
+      9,
+      9,
+      15
+    ],
+    "yearOfRelease": 1972,
+    "modelId": 16,
+    "wasInAccident": false,
+    "brandId": 24,
+    "ownerId": 2,
+    "mileage": 192673
+  },
+  {
+    "accessoriesIds": [
+      15,
+      2,
+      11
+    ],
+    "yearOfRelease": 1972,
+    "modelId": 18,
+    "wasInAccident": true,
+    "brandId": 4,
+    "ownerId": 5,
+    "mileage": 154983
+  },
+  {
+    "accessoriesIds": [
+      3,
+      13,
+      2,
+      7,
+      7
+    ],
+    "yearOfRelease": 1981,
+    "modelId": 20,
+    "wasInAccident": false,
+    "brandId": 14,
+    "ownerId": 1,
+    "mileage": 177231
+  },
+  {
+    "accessoriesIds": [
+      3,
+      7,
+      10,
+      8,
+      3,
+      15
+    ],
+    "yearOfRelease": 2015,
+    "modelId": 25,
+    "wasInAccident": false,
+    "brandId": 23,
+    "ownerId": 5,
+    "mileage": 90021
+  },
+  {
+    "accessoriesIds": [
+      2,
+      9,
+      15,
+      3
+    ],
+    "yearOfRelease": 2001,
+    "modelId": 10,
+    "wasInAccident": false,
+    "brandId": 2,
+    "ownerId": 2,
+    "mileage": 180692
+  },
+  {
+    "accessoriesIds": [
+      11,
+      3
+    ],
+    "yearOfRelease": 2004,
+    "modelId": 24,
+    "wasInAccident": true,
+    "brandId": 12,
+    "ownerId": 1,
+    "mileage": 30929
+  },
+  {
+    "accessoriesIds": [
+      9,
+      10,
+      12,
+      1,
+      2,
+      6
+    ],
+    "yearOfRelease": 1979,
+    "modelId": 1,
+    "wasInAccident": false,
+    "brandId": 11,
+    "ownerId": 4,
+    "mileage": 140972
+  },
+  {
+    "accessoriesIds": [
+      15,
+      12,
+      5
+    ],
+    "yearOfRelease": 1983,
+    "modelId": 2,
+    "wasInAccident": false,
+    "brandId": 18,
+    "ownerId": 3,
+    "mileage": 73163
+  },
+  {
+    "accessoriesIds": [
+      13,
+      7
+    ],
+    "yearOfRelease": 2000,
+    "modelId": 14,
+    "wasInAccident": false,
+    "brandId": 25,
+    "ownerId": 5,
+    "mileage": 66457
+  },
+  {
+    "accessoriesIds": [
+      6,
+      4,
+      9,
+      4,
+      13
+    ],
+    "yearOfRelease": 1980,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 1,
+    "ownerId": 4,
+    "mileage": 30989
+  },
+  {
+    "accessoriesIds": [
+      3,
+      3,
+      1
+    ],
+    "yearOfRelease": 1979,
+    "modelId": 14,
+    "wasInAccident": true,
+    "brandId": 26,
+    "ownerId": 4,
+    "mileage": 16882
+  },
+  {
+    "accessoriesIds": [
+      14,
+      1
+    ],
+    "yearOfRelease": 2016,
+    "modelId": 19,
+    "wasInAccident": false,
+    "brandId": 11,
+    "ownerId": 3,
+    "mileage": 79265
+  },
+  {
+    "accessoriesIds": [
+      15,
+      11,
+      8,
+      13,
+      12
+    ],
+    "yearOfRelease": 1992,
+    "modelId": 14,
+    "wasInAccident": true,
+    "brandId": 27,
+    "ownerId": 5,
+    "mileage": 187581
+  },
+  {
+    "accessoriesIds": [
+      5,
+      10,
+      2,
+      15,
+      8
+    ],
+    "yearOfRelease": 2011,
+    "modelId": 4,
+    "wasInAccident": false,
+    "brandId": 20,
+    "ownerId": 1,
+    "mileage": 107135
+  },
+  {
+    "accessoriesIds": [
+      11,
+      7,
+      12,
+      4
+    ],
+    "yearOfRelease": 2014,
+    "modelId": 8,
+    "wasInAccident": false,
+    "brandId": 25,
+    "ownerId": 5,
+    "mileage": 10018
+  },
+  {
+    "accessoriesIds": [
+      15,
+      6,
+      15,
+      7,
+      9,
+      4
+    ],
+    "yearOfRelease": 1971,
+    "modelId": 24,
+    "wasInAccident": false,
+    "brandId": 29,
+    "ownerId": 5,
+    "mileage": 102819
+  },
+  {
+    "accessoriesIds": [
+      7,
+      2,
+      15,
+      10
+    ],
+    "yearOfRelease": 1976,
+    "modelId": 4,
+    "wasInAccident": false,
+    "brandId": 19,
+    "ownerId": 4,
+    "mileage": 116765
+  },
+  {
+    "accessoriesIds": [
+      7,
+      7,
+      6,
+      5
+    ],
+    "yearOfRelease": 2012,
+    "modelId": 20,
+    "wasInAccident": false,
+    "brandId": 24,
+    "ownerId": 1,
+    "mileage": 62709
+  },
+  {
+    "accessoriesIds": [
+      8,
+      1,
+      14,
+      6
+    ],
+    "yearOfRelease": 1972,
+    "modelId": 11,
+    "wasInAccident": true,
+    "brandId": 3,
+    "ownerId": 2,
+    "mileage": 190260
+  },
+  {
+    "accessoriesIds": [
+      6,
+      6,
+      3
+    ],
+    "yearOfRelease": 1981,
+    "modelId": 22,
+    "wasInAccident": false,
+    "brandId": 13,
+    "ownerId": 4,
+    "mileage": 24801
+  },
+  {
+    "accessoriesIds": [
+      5,
+      9,
+      8
+    ],
+    "yearOfRelease": 1991,
+    "modelId": 9,
+    "wasInAccident": false,
+    "brandId": 28,
+    "ownerId": 2,
+    "mileage": 87023
+  },
+  {
+    "accessoriesIds": [
+      15,
+      1,
+      5,
+      2,
+      4,
+      14
+    ],
+    "yearOfRelease": 1991,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 13,
+    "ownerId": 2,
+    "mileage": 110510
+  },
+  {
+    "accessoriesIds": [
+      2,
+      11,
+      3
+    ],
+    "yearOfRelease": 2017,
+    "modelId": 16,
+    "wasInAccident": false,
+    "brandId": 29,
+    "ownerId": 5,
+    "mileage": 94628
+  },
+  {
+    "accessoriesIds": [
+      6,
+      13,
+      5
+    ],
+    "yearOfRelease": 1978,
+    "modelId": 9,
+    "wasInAccident": false,
+    "brandId": 20,
+    "ownerId": 3,
+    "mileage": 18016
+  },
+  {
+    "accessoriesIds": [
+      14,
+      10,
+      12
+    ],
+    "yearOfRelease": 1991,
+    "modelId": 20,
+    "wasInAccident": false,
+    "brandId": 24,
+    "ownerId": 2,
+    "mileage": 48779
+  },
+  {
+    "accessoriesIds": [
+      9,
+      3,
+      4
+    ],
+    "yearOfRelease": 2016,
+    "modelId": 22,
+    "wasInAccident": false,
+    "brandId": 30,
+    "ownerId": 5,
+    "mileage": 182065
+  },
+  {
+    "accessoriesIds": [
+      2,
+      11,
+      9,
+      13,
+      14
+    ],
+    "yearOfRelease": 2010,
+    "modelId": 17,
+    "wasInAccident": false,
+    "brandId": 23,
+    "ownerId": 3,
+    "mileage": 107530
+  },
+  {
+    "accessoriesIds": [
+      13,
+      13,
+      13,
+      15
+    ],
+    "yearOfRelease": 1978,
+    "modelId": 26,
+    "wasInAccident": false,
+    "brandId": 29,
+    "ownerId": 1,
+    "mileage": 103041
+  },
+  {
+    "accessoriesIds": [
+      2,
+      4,
+      7,
+      14,
+      4,
+      7
+    ],
+    "yearOfRelease": 1989,
+    "modelId": 8,
+    "wasInAccident": false,
+    "brandId": 24,
+    "ownerId": 5,
+    "mileage": 109727
+  },
+  {
+    "accessoriesIds": [
+      6,
+      1,
+      10,
+      12,
+      12
+    ],
+    "yearOfRelease": 2003,
+    "modelId": 6,
+    "wasInAccident": false,
+    "brandId": 27,
+    "ownerId": 4,
+    "mileage": 148888
+  },
+  {
+    "accessoriesIds": [
+      14,
+      1,
+      8,
+      4,
+      2,
+      13
+    ],
+    "yearOfRelease": 2017,
+    "modelId": 12,
+    "wasInAccident": false,
+    "brandId": 19,
+    "ownerId": 4,
+    "mileage": 135778
+  },
+  {
+    "accessoriesIds": [
+      5,
+      12,
+      12
+    ],
+    "yearOfRelease": 1981,
+    "modelId": 16,
+    "wasInAccident": false,
+    "brandId": 7,
+    "ownerId": 5,
+    "mileage": 56613
+  },
+  {
+    "accessoriesIds": [
+      5,
+      4,
+      2,
+      6,
+      11
+    ],
+    "yearOfRelease": 1982,
+    "modelId": 11,
+    "wasInAccident": true,
+    "brandId": 17,
+    "ownerId": 3,
+    "mileage": 7338
+  },
+  {
+    "accessoriesIds": [
+      1,
+      10,
+      10
+    ],
+    "yearOfRelease": 2013,
+    "modelId": 26,
+    "wasInAccident": true,
+    "brandId": 28,
+    "ownerId": 3,
+    "mileage": 58743
+  },
+  {
+    "accessoriesIds": [
+      5,
+      7,
+      7,
+      7
+    ],
+    "yearOfRelease": 1983,
+    "modelId": 1,
+    "wasInAccident": false,
+    "brandId": 27,
+    "ownerId": 1,
+    "mileage": 144272
+  },
+  {
+    "accessoriesIds": [
+      2,
+      13,
+      12,
+      7,
+      5
+    ],
+    "yearOfRelease": 2016,
+    "modelId": 21,
+    "wasInAccident": false,
+    "brandId": 25,
+    "ownerId": 5,
+    "mileage": 52983
+  },
+  {
+    "accessoriesIds": [
+      14,
+      4,
+      2
+    ],
+    "yearOfRelease": 2003,
+    "modelId": 20,
+    "wasInAccident": true,
+    "brandId": 16,
+    "ownerId": 3,
+    "mileage": 110264
+  },
+  {
+    "accessoriesIds": [
+      10,
+      9,
+      11,
+      13
+    ],
+    "yearOfRelease": 2002,
+    "modelId": 18,
+    "wasInAccident": false,
+    "brandId": 31,
+    "ownerId": 1,
+    "mileage": 99020
+  },
+  {
+    "accessoriesIds": [
+      7,
+      11,
+      15,
+      5
+    ],
+    "yearOfRelease": 1976,
+    "modelId": 26,
+    "wasInAccident": false,
+    "brandId": 17,
+    "ownerId": 4,
+    "mileage": 155912
+  },
+  {
+    "accessoriesIds": [
+      11,
+      8,
+      14
+    ],
+    "yearOfRelease": 1981,
+    "modelId": 9,
+    "wasInAccident": false,
+    "brandId": 9,
+    "ownerId": 3,
+    "mileage": 137300
+  },
+  {
+    "accessoriesIds": [
+      11,
+      8,
+      11
+    ],
+    "yearOfRelease": 2008,
+    "modelId": 14,
+    "wasInAccident": false,
+    "brandId": 12,
+    "ownerId": 3,
+    "mileage": 122442
+  },
+  {
+    "accessoriesIds": [
+      3,
+      6,
+      2,
+      7,
+      4,
+      5
+    ],
+    "yearOfRelease": 1988,
+    "modelId": 6,
+    "wasInAccident": false,
+    "brandId": 1,
+    "ownerId": 1,
+    "mileage": 140562
+  },
+  {
+    "accessoriesIds": [
+      5,
+      7,
+      5,
+      12,
+      15
+    ],
+    "yearOfRelease": 1985,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 29,
+    "ownerId": 2,
+    "mileage": 27250
+  },
+  {
+    "accessoriesIds": [
+      1,
+      15,
+      8,
+      8,
+      13,
+      12
+    ],
+    "yearOfRelease": 1975,
+    "modelId": 26,
+    "wasInAccident": true,
+    "brandId": 17,
+    "ownerId": 3,
+    "mileage": 173625
+  },
+  {
+    "accessoriesIds": [
+      13,
+      12,
+      5,
+      2,
+      4
+    ],
+    "yearOfRelease": 1971,
+    "modelId": 3,
+    "wasInAccident": false,
+    "brandId": 16,
+    "ownerId": 4,
+    "mileage": 173223
+  },
+  {
+    "accessoriesIds": [
+      7,
+      12,
+      11,
+      15,
+      13,
+      6
+    ],
+    "yearOfRelease": 2018,
+    "modelId": 2,
+    "wasInAccident": false,
+    "brandId": 20,
+    "ownerId": 2,
+    "mileage": 4484
+  },
+  {
+    "accessoriesIds": [
+      11,
+      10,
+      4
+    ],
+    "yearOfRelease": 1974,
+    "modelId": 26,
+    "wasInAccident": true,
+    "brandId": 10,
+    "ownerId": 2,
+    "mileage": 26406
+  },
+  {
+    "accessoriesIds": [
+      11,
+      2,
+      2,
+      9
+    ],
+    "yearOfRelease": 1973,
+    "modelId": 5,
+    "wasInAccident": false,
+    "brandId": 29,
+    "ownerId": 4,
+    "mileage": 144786
+  },
+  {
+    "accessoriesIds": [
+      8,
+      11,
+      13,
+      14,
+      3
+    ],
+    "yearOfRelease": 2006,
+    "modelId": 15,
+    "wasInAccident": false,
+    "brandId": 21,
+    "ownerId": 2,
+    "mileage": 118367
+  },
+  {
+    "accessoriesIds": [
+      14,
+      14,
+      7,
+      15,
+      9
+    ],
+    "yearOfRelease": 2018,
+    "modelId": 24,
+    "wasInAccident": true,
+    "brandId": 4,
+    "ownerId": 3,
+    "mileage": 124055
+  },
+  {
+    "accessoriesIds": [
+      1,
+      5
+    ],
+    "yearOfRelease": 2020,
+    "modelId": 13,
+    "wasInAccident": false,
+    "brandId": 17,
+    "ownerId": 1,
+    "mileage": 120830
+  },
+  {
+    "accessoriesIds": [
+      14,
+      7
+    ],
+    "yearOfRelease": 1988,
+    "modelId": 22,
+    "wasInAccident": false,
+    "brandId": 16,
+    "ownerId": 3,
+    "mileage": 182398
+  },
+  {
+    "accessoriesIds": [
+      6,
+      13,
+      1,
+      12
+    ],
+    "yearOfRelease": 1981,
+    "modelId": 17,
+    "wasInAccident": true,
+    "brandId": 28,
+    "ownerId": 3,
+    "mileage": 186292
+  },
+  {
+    "accessoriesIds": [
+      11,
+      15,
+      5,
+      15,
+      2,
+      11
+    ],
+    "yearOfRelease": 2021,
+    "modelId": 6,
+    "wasInAccident": true,
+    "brandId": 26,
+    "ownerId": 4,
+    "mileage": 100002
+  },
+  {
+    "accessoriesIds": [
+      10,
+      10,
+      6,
+      1,
+      9
+    ],
+    "yearOfRelease": 2024,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 9,
+    "ownerId": 1,
+    "mileage": 114366
+  },
+  {
+    "accessoriesIds": [
+      5,
+      3,
+      8,
+      1,
+      1
+    ],
+    "yearOfRelease": 2014,
+    "modelId": 8,
+    "wasInAccident": false,
+    "brandId": 7,
+    "ownerId": 1,
+    "mileage": 41372
+  },
+  {
+    "accessoriesIds": [
+      11,
+      3,
+      6,
+      9
+    ],
+    "yearOfRelease": 1979,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 24,
+    "ownerId": 4,
+    "mileage": 27287
+  },
+  {
+    "accessoriesIds": [
+      9,
+      6,
+      14,
+      9
+    ],
+    "yearOfRelease": 1979,
+    "modelId": 12,
+    "wasInAccident": true,
+    "brandId": 22,
+    "ownerId": 3,
+    "mileage": 103477
+  },
+  {
+    "accessoriesIds": [
+      10,
+      3,
+      12
+    ],
+    "yearOfRelease": 2000,
+    "modelId": 20,
+    "wasInAccident": false,
+    "brandId": 4,
+    "ownerId": 5,
+    "mileage": 62964
+  },
+  {
+    "accessoriesIds": [
+      9,
+      11,
+      13,
+      12,
+      2
+    ],
+    "yearOfRelease": 1995,
+    "modelId": 23,
+    "wasInAccident": false,
+    "brandId": 15,
+    "ownerId": 2,
+    "mileage": 7404
+  },
+  {
+    "accessoriesIds": [
+      5,
+      5,
+      12,
+      6,
+      10,
+      10
+    ],
+    "yearOfRelease": 1999,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 24,
+    "ownerId": 3,
+    "mileage": 83779
+  },
+  {
+    "accessoriesIds": [
+      14,
+      5,
+      8,
+      9,
+      5,
+      5
+    ],
+    "yearOfRelease": 2003,
+    "modelId": 6,
+    "wasInAccident": false,
+    "brandId": 18,
+    "ownerId": 5,
+    "mileage": 175785
+  },
+  {
+    "accessoriesIds": [
+      9,
+      5,
+      2
+    ],
+    "yearOfRelease": 1976,
+    "modelId": 22,
+    "wasInAccident": false,
+    "brandId": 14,
+    "ownerId": 1,
+    "mileage": 17326
+  },
+  {
+    "accessoriesIds": [
+      12,
+      9,
+      11,
+      12,
+      4
+    ],
+    "yearOfRelease": 1996,
+    "modelId": 25,
+    "wasInAccident": false,
+    "brandId": 27,
+    "ownerId": 3,
+    "mileage": 158273
+  },
+  {
+    "accessoriesIds": [
+      13,
+      7,
+      1,
+      3,
+      3
+    ],
+    "yearOfRelease": 2000,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 24,
+    "ownerId": 1,
+    "mileage": 197417
+  },
+  {
+    "accessoriesIds": [
+      7,
+      1,
+      6
+    ],
+    "yearOfRelease": 1977,
+    "modelId": 3,
+    "wasInAccident": false,
+    "brandId": 26,
+    "ownerId": 5,
+    "mileage": 174887
+  },
+  {
+    "accessoriesIds": [
+      14,
+      11,
+      4,
+      2,
+      6,
+      10
+    ],
+    "yearOfRelease": 2013,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 26,
+    "ownerId": 5,
+    "mileage": 151046
+  },
+  {
+    "accessoriesIds": [
+      12,
+      15
+    ],
+    "yearOfRelease": 2002,
+    "modelId": 4,
+    "wasInAccident": true,
+    "brandId": 23,
+    "ownerId": 5,
+    "mileage": 152711
+  },
+  {
+    "accessoriesIds": [
+      2,
+      1,
+      4,
+      14
+    ],
+    "yearOfRelease": 2002,
+    "modelId": 14,
+    "wasInAccident": false,
+    "brandId": 29,
+    "ownerId": 4,
+    "mileage": 146031
+  },
+  {
+    "accessoriesIds": [
+      11,
+      13
+    ],
+    "yearOfRelease": 1991,
+    "modelId": 5,
+    "wasInAccident": false,
+    "brandId": 17,
+    "ownerId": 4,
+    "mileage": 156182
+  },
+  {
+    "accessoriesIds": [
+      11,
+      15,
+      11,
+      12,
+      8
+    ],
+    "yearOfRelease": 1992,
+    "modelId": 21,
+    "wasInAccident": false,
+    "brandId": 5,
+    "ownerId": 5,
+    "mileage": 14476
+  },
+  {
+    "accessoriesIds": [
+      1,
+      15,
+      11,
+      13,
+      9,
+      4
+    ],
+    "yearOfRelease": 1995,
+    "modelId": 13,
+    "wasInAccident": true,
+    "brandId": 30,
+    "ownerId": 2,
+    "mileage": 168021
+  },
+  {
+    "accessoriesIds": [
+      9,
+      14,
+      14,
+      5
+    ],
+    "yearOfRelease": 1995,
+    "modelId": 25,
+    "wasInAccident": false,
+    "brandId": 22,
+    "ownerId": 3,
+    "mileage": 163625
+  },
+  {
+    "accessoriesIds": [
+      13,
+      12,
+      13,
+      1
+    ],
+    "yearOfRelease": 1983,
+    "modelId": 25,
+    "wasInAccident": true,
+    "brandId": 29,
+    "ownerId": 2,
+    "mileage": 65070
+  },
+  {
+    "accessoriesIds": [
+      8,
+      14,
+      10
+    ],
+    "yearOfRelease": 1997,
+    "modelId": 21,
+    "wasInAccident": false,
+    "brandId": 10,
+    "ownerId": 1,
+    "mileage": 46886
+  },
+  {
+    "accessoriesIds": [
+      10,
+      5,
+      4,
+      4,
+      9,
+      14
+    ],
+    "yearOfRelease": 1989,
+    "modelId": 24,
+    "wasInAccident": false,
+    "brandId": 7,
+    "ownerId": 5,
+    "mileage": 95592
+  },
+  {
+    "accessoriesIds": [
+      15,
+      1,
+      4,
+      4,
+      15
+    ],
+    "yearOfRelease": 1988,
+    "modelId": 22,
+    "wasInAccident": false,
+    "brandId": 27,
+    "ownerId": 4,
+    "mileage": 116754
+  },
+  {
+    "accessoriesIds": [
+      15,
+      10,
+      11,
+      5,
+      7
+    ],
+    "yearOfRelease": 1995,
+    "modelId": 9,
+    "wasInAccident": true,
+    "brandId": 12,
+    "ownerId": 4,
+    "mileage": 131375
+  },
+  {
+    "accessoriesIds": [
+      13,
+      13,
+      3
+    ],
+    "yearOfRelease": 2001,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 5,
+    "ownerId": 4,
+    "mileage": 119394
+  },
+  {
+    "accessoriesIds": [
+      2,
+      9,
+      3,
+      1,
+      1
+    ],
+    "yearOfRelease": 2006,
+    "modelId": 17,
+    "wasInAccident": false,
+    "brandId": 16,
+    "ownerId": 2,
+    "mileage": 54555
+  },
+  {
+    "accessoriesIds": [
+      11,
+      11,
+      7,
+      13,
+      13
+    ],
+    "yearOfRelease": 2002,
+    "modelId": 15,
+    "wasInAccident": false,
+    "brandId": 19,
+    "ownerId": 5,
+    "mileage": 77854
+  },
+  {
+    "accessoriesIds": [
+      10,
+      2,
+      6,
+      10,
+      8
+    ],
+    "yearOfRelease": 2019,
+    "modelId": 9,
+    "wasInAccident": true,
+    "brandId": 1,
+    "ownerId": 1,
+    "mileage": 30807
+  },
+  {
+    "accessoriesIds": [
+      7,
+      13,
+      5,
+      10
+    ],
+    "yearOfRelease": 2002,
+    "modelId": 25,
+    "wasInAccident": true,
+    "brandId": 3,
+    "ownerId": 2,
+    "mileage": 195846
+  },
+  {
+    "accessoriesIds": [
+      15,
+      10
+    ],
+    "yearOfRelease": 2012,
+    "modelId": 14,
+    "wasInAccident": false,
+    "brandId": 15,
+    "ownerId": 3,
+    "mileage": 71920
+  },
+  {
+    "accessoriesIds": [
+      1,
+      14,
+      12,
+      5,
+      4,
+      9
+    ],
+    "yearOfRelease": 1987,
+    "modelId": 13,
+    "wasInAccident": false,
+    "brandId": 7,
+    "ownerId": 5,
+    "mileage": 158505
+  },
+  {
+    "accessoriesIds": [
+      3,
+      8,
+      12
+    ],
+    "yearOfRelease": 1972,
+    "modelId": 4,
+    "wasInAccident": false,
+    "brandId": 26,
+    "ownerId": 2,
+    "mileage": 85324
+  },
+  {
+    "accessoriesIds": [
+      11,
+      11,
+      2
+    ],
+    "yearOfRelease": 2016,
+    "modelId": 13,
+    "wasInAccident": false,
+    "brandId": 8,
+    "ownerId": 4,
+    "mileage": 125956
+  },
+  {
+    "accessoriesIds": [
+      14,
+      12,
+      3,
+      11,
+      1,
+      10
+    ],
+    "yearOfRelease": 2019,
+    "modelId": 18,
+    "wasInAccident": true,
+    "brandId": 13,
+    "ownerId": 4,
+    "mileage": 46517
+  },
+  {
+    "accessoriesIds": [
+      6,
+      6
+    ],
+    "yearOfRelease": 2010,
+    "modelId": 25,
+    "wasInAccident": false,
+    "brandId": 26,
+    "ownerId": 5,
+    "mileage": 30193
+  },
+  {
+    "accessoriesIds": [
+      11,
+      10,
+      7,
+      1
+    ],
+    "yearOfRelease": 1994,
+    "modelId": 16,
+    "wasInAccident": false,
+    "brandId": 16,
+    "ownerId": 3,
+    "mileage": 159276
+  },
+  {
+    "accessoriesIds": [
+      15,
+      9,
+      14,
+      15,
+      4,
+      7
+    ],
+    "yearOfRelease": 1996,
+    "modelId": 12,
+    "wasInAccident": false,
+    "brandId": 13,
+    "ownerId": 3,
+    "mileage": 112677
+  },
+  {
+    "accessoriesIds": [
+      9,
+      5,
+      10,
+      6,
+      1
+    ],
+    "yearOfRelease": 1981,
+    "modelId": 15,
+    "wasInAccident": false,
+    "brandId": 1,
+    "ownerId": 3,
+    "mileage": 26106
+  },
+  {
+    "accessoriesIds": [
+      1,
+      15,
+      10,
+      2
+    ],
+    "yearOfRelease": 2005,
+    "modelId": 13,
+    "wasInAccident": false,
+    "brandId": 11,
+    "ownerId": 4,
+    "mileage": 154929
+  },
+  {
+    "accessoriesIds": [
+      9,
+      10,
+      5,
+      8,
+      1,
+      11
+    ],
+    "yearOfRelease": 1985,
+    "modelId": 17,
+    "wasInAccident": false,
+    "brandId": 1,
+    "ownerId": 5,
+    "mileage": 113546
+  },
+  {
+    "accessoriesIds": [
+      1,
+      6,
+      10
+    ],
+    "yearOfRelease": 1981,
+    "modelId": 9,
+    "wasInAccident": false,
+    "brandId": 28,
+    "ownerId": 5,
+    "mileage": 179115
+  },
+  {
+    "accessoriesIds": [
+      5,
+      13,
+      4
+    ],
+    "yearOfRelease": 1994,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 20,
+    "ownerId": 4,
+    "mileage": 180890
+  },
+  {
+    "accessoriesIds": [
+      11,
+      14,
+      10,
+      4
+    ],
+    "yearOfRelease": 2015,
+    "modelId": 26,
+    "wasInAccident": false,
+    "brandId": 17,
+    "ownerId": 2,
+    "mileage": 20113
+  },
+  {
+    "accessoriesIds": [
+      4,
+      11,
+      15,
+      9,
+      15,
+      3
+    ],
+    "yearOfRelease": 2021,
+    "modelId": 23,
+    "wasInAccident": false,
+    "brandId": 11,
+    "ownerId": 3,
+    "mileage": 127494
+  },
+  {
+    "accessoriesIds": [
+      1,
+      15,
+      7,
+      3
+    ],
+    "yearOfRelease": 2014,
+    "modelId": 13,
+    "wasInAccident": true,
+    "brandId": 9,
+    "ownerId": 4,
+    "mileage": 151566
+  },
+  {
+    "accessoriesIds": [
+      15,
+      3,
+      10,
+      10,
+      1,
+      15
+    ],
+    "yearOfRelease": 1991,
+    "modelId": 9,
+    "wasInAccident": false,
+    "brandId": 21,
+    "ownerId": 1,
+    "mileage": 117127
+  },
+  {
+    "accessoriesIds": [
+      10,
+      7
+    ],
+    "yearOfRelease": 1998,
+    "modelId": 14,
+    "wasInAccident": false,
+    "brandId": 18,
+    "ownerId": 5,
+    "mileage": 197385
+  },
+  {
+    "accessoriesIds": [
+      15,
+      7,
+      6,
+      4,
+      2,
+      14
+    ],
+    "yearOfRelease": 1975,
+    "modelId": 13,
+    "wasInAccident": true,
+    "brandId": 8,
+    "ownerId": 3,
+    "mileage": 34824
+  },
+  {
+    "accessoriesIds": [
+      5,
+      9,
+      1
+    ],
+    "yearOfRelease": 1986,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 2,
+    "ownerId": 5,
+    "mileage": 146156
+  },
+  {
+    "accessoriesIds": [
+      4,
+      7,
+      7
+    ],
+    "yearOfRelease": 2024,
+    "modelId": 16,
+    "wasInAccident": false,
+    "brandId": 2,
+    "ownerId": 5,
+    "mileage": 62113
+  },
+  {
+    "accessoriesIds": [
+      6,
+      4,
+      3
+    ],
+    "yearOfRelease": 2003,
+    "modelId": 11,
+    "wasInAccident": true,
+    "brandId": 17,
+    "ownerId": 4,
+    "mileage": 175560
+  },
+  {
+    "accessoriesIds": [
+      1,
+      4,
+      11,
+      6,
+      4,
+      13
+    ],
+    "yearOfRelease": 1995,
+    "modelId": 24,
+    "wasInAccident": false,
+    "brandId": 3,
+    "ownerId": 3,
+    "mileage": 178986
+  },
+  {
+    "accessoriesIds": [
+      12,
+      2,
+      13
+    ],
+    "yearOfRelease": 2016,
+    "modelId": 12,
+    "wasInAccident": true,
+    "brandId": 8,
+    "ownerId": 4,
+    "mileage": 52198
+  },
+  {
+    "accessoriesIds": [
+      5,
+      8,
+      5
+    ],
+    "yearOfRelease": 2002,
+    "modelId": 14,
+    "wasInAccident": false,
+    "brandId": 20,
+    "ownerId": 5,
+    "mileage": 52003
+  },
+  {
+    "accessoriesIds": [
+      5,
+      5,
+      3,
+      3,
+      5
+    ],
+    "yearOfRelease": 2020,
+    "modelId": 5,
+    "wasInAccident": false,
+    "brandId": 4,
+    "ownerId": 1,
+    "mileage": 13849
+  },
+  {
+    "accessoriesIds": [
+      2,
+      3,
+      10
+    ],
+    "yearOfRelease": 2020,
+    "modelId": 22,
+    "wasInAccident": false,
+    "brandId": 3,
+    "ownerId": 2,
+    "mileage": 91707
+  },
+  {
+    "accessoriesIds": [
+      7,
+      12,
+      14,
+      9,
+      6
+    ],
+    "yearOfRelease": 2004,
+    "modelId": 18,
+    "wasInAccident": false,
+    "brandId": 15,
+    "ownerId": 2,
+    "mileage": 52612
+  },
+  {
+    "accessoriesIds": [
+      5,
+      10,
+      8,
+      3,
+      3
+    ],
+    "yearOfRelease": 2022,
+    "modelId": 19,
+    "wasInAccident": true,
+    "brandId": 19,
+    "ownerId": 4,
+    "mileage": 143551
+  },
+  {
+    "accessoriesIds": [
+      11,
+      8,
+      10,
+      11,
+      12
+    ],
+    "yearOfRelease": 1979,
+    "modelId": 22,
+    "wasInAccident": false,
+    "brandId": 31,
+    "ownerId": 2,
+    "mileage": 125213
+  },
+  {
+    "accessoriesIds": [
+      5,
+      4,
+      14,
+      3
+    ],
+    "yearOfRelease": 1988,
+    "modelId": 26,
+    "wasInAccident": false,
+    "brandId": 6,
+    "ownerId": 2,
+    "mileage": 86038
+  },
+  {
+    "accessoriesIds": [
+      12,
+      14,
+      13
+    ],
+    "yearOfRelease": 1990,
+    "modelId": 18,
+    "wasInAccident": false,
+    "brandId": 9,
+    "ownerId": 1,
+    "mileage": 164955
+  },
+  {
+    "accessoriesIds": [
+      13,
+      7,
+      2
+    ],
+    "yearOfRelease": 2011,
+    "modelId": 12,
+    "wasInAccident": false,
+    "brandId": 1,
+    "ownerId": 5,
+    "mileage": 127315
+  },
+  {
+    "accessoriesIds": [
+      1,
+      1,
+      11,
+      4,
+      11
+    ],
+    "yearOfRelease": 1970,
+    "modelId": 14,
+    "wasInAccident": true,
+    "brandId": 12,
+    "ownerId": 2,
+    "mileage": 76350
+  },
+  {
+    "accessoriesIds": [
+      4,
+      14,
+      9
+    ],
+    "yearOfRelease": 2009,
+    "modelId": 4,
+    "wasInAccident": false,
+    "brandId": 6,
+    "ownerId": 2,
+    "mileage": 53734
+  },
+  {
+    "accessoriesIds": [
+      6,
+      13
+    ],
+    "yearOfRelease": 2013,
+    "modelId": 11,
+    "wasInAccident": true,
+    "brandId": 14,
+    "ownerId": 4,
+    "mileage": 147691
+  },
+  {
+    "accessoriesIds": [
+      12,
+      15,
+      8,
+      3,
+      2
+    ],
+    "yearOfRelease": 2020,
+    "modelId": 14,
+    "wasInAccident": false,
+    "brandId": 15,
+    "ownerId": 4,
+    "mileage": 148874
+  },
+  {
+    "accessoriesIds": [
+      10,
+      15,
+      7,
+      5,
+      7,
+      7
+    ],
+    "yearOfRelease": 2010,
+    "modelId": 6,
+    "wasInAccident": true,
+    "brandId": 21,
+    "ownerId": 3,
+    "mileage": 11599
+  },
+  {
+    "accessoriesIds": [
+      7,
+      5,
+      9,
+      15,
+      11
+    ],
+    "yearOfRelease": 1987,
+    "modelId": 7,
+    "wasInAccident": true,
+    "brandId": 17,
+    "ownerId": 5,
+    "mileage": 152037
+  },
+  {
+    "accessoriesIds": [
+      6,
+      4
+    ],
+    "yearOfRelease": 1993,
+    "modelId": 23,
+    "wasInAccident": false,
+    "brandId": 4,
+    "ownerId": 5,
+    "mileage": 185432
+  },
+  {
+    "accessoriesIds": [
+      13,
+      6
+    ],
+    "yearOfRelease": 1990,
+    "modelId": 24,
+    "wasInAccident": false,
+    "brandId": 17,
+    "ownerId": 4,
+    "mileage": 132574
+  },
+  {
+    "accessoriesIds": [
+      2,
+      3,
+      9,
+      3,
+      12,
+      12
+    ],
+    "yearOfRelease": 1993,
+    "modelId": 16,
+    "wasInAccident": false,
+    "brandId": 12,
+    "ownerId": 2,
+    "mileage": 140250
+  },
+  {
+    "accessoriesIds": [
+      12,
+      6,
+      6
+    ],
+    "yearOfRelease": 2019,
+    "modelId": 19,
+    "wasInAccident": true,
+    "brandId": 24,
+    "ownerId": 4,
+    "mileage": 171898
+  },
+  {
+    "accessoriesIds": [
+      6,
+      11,
+      5,
+      1,
+      11
+    ],
+    "yearOfRelease": 1991,
+    "modelId": 8,
+    "wasInAccident": false,
+    "brandId": 3,
+    "ownerId": 2,
+    "mileage": 83019
+  },
+  {
+    "accessoriesIds": [
+      7,
+      10,
+      5
+    ],
+    "yearOfRelease": 1972,
+    "modelId": 19,
+    "wasInAccident": true,
+    "brandId": 10,
+    "ownerId": 4,
+    "mileage": 76847
+  },
+  {
+    "accessoriesIds": [
+      11,
+      1,
+      8
+    ],
+    "yearOfRelease": 1978,
+    "modelId": 20,
+    "wasInAccident": false,
+    "brandId": 17,
+    "ownerId": 3,
+    "mileage": 19145
+  },
+  {
+    "accessoriesIds": [
+      15,
+      8,
+      8,
+      9
+    ],
+    "yearOfRelease": 2011,
+    "modelId": 14,
+    "wasInAccident": false,
+    "brandId": 31,
+    "ownerId": 3,
+    "mileage": 33186
+  },
+  {
+    "accessoriesIds": [
+      7,
+      8,
+      7
+    ],
+    "yearOfRelease": 1990,
+    "modelId": 19,
+    "wasInAccident": true,
+    "brandId": 13,
+    "ownerId": 2,
+    "mileage": 81092
+  },
+  {
+    "accessoriesIds": [
+      6,
+      13,
+      5,
+      15,
+      1
+    ],
+    "yearOfRelease": 2024,
+    "modelId": 4,
+    "wasInAccident": false,
+    "brandId": 18,
+    "ownerId": 3,
+    "mileage": 79769
+  },
+  {
+    "accessoriesIds": [
+      1,
+      5,
+      6
+    ],
+    "yearOfRelease": 2020,
+    "modelId": 16,
+    "wasInAccident": false,
+    "brandId": 15,
+    "ownerId": 3,
+    "mileage": 60014
+  },
+  {
+    "accessoriesIds": [
+      12,
+      15,
+      6
+    ],
+    "yearOfRelease": 1982,
+    "modelId": 3,
+    "wasInAccident": false,
+    "brandId": 8,
+    "ownerId": 4,
+    "mileage": 118688
+  },
+  {
+    "accessoriesIds": [
+      9,
+      8,
+      4
+    ],
+    "yearOfRelease": 1979,
+    "modelId": 10,
+    "wasInAccident": false,
+    "brandId": 15,
+    "ownerId": 4,
+    "mileage": 129381
+  },
+  {
+    "accessoriesIds": [
+      12,
+      4,
+      10
+    ],
+    "yearOfRelease": 1997,
+    "modelId": 8,
+    "wasInAccident": false,
+    "brandId": 27,
+    "ownerId": 2,
+    "mileage": 123105
+  },
+  {
+    "accessoriesIds": [
+      8,
+      13,
+      4,
+      8,
+      1
+    ],
+    "yearOfRelease": 1989,
+    "modelId": 1,
+    "wasInAccident": false,
+    "brandId": 2,
+    "ownerId": 1,
+    "mileage": 133921
+  },
+  {
+    "accessoriesIds": [
+      2,
+      5,
+      5,
+      13
+    ],
+    "yearOfRelease": 1996,
+    "modelId": 25,
+    "wasInAccident": false,
+    "brandId": 24,
+    "ownerId": 4,
+    "mileage": 28229
+  },
+  {
+    "accessoriesIds": [
+      12,
+      14,
+      6,
+      7,
+      10,
+      7
+    ],
+    "yearOfRelease": 1994,
+    "modelId": 14,
+    "wasInAccident": false,
+    "brandId": 26,
+    "ownerId": 3,
+    "mileage": 189478
+  },
+  {
+    "accessoriesIds": [
+      7,
+      7,
+      6,
+      7,
+      6
+    ],
+    "yearOfRelease": 1980,
+    "modelId": 6,
+    "wasInAccident": false,
+    "brandId": 27,
+    "ownerId": 3,
+    "mileage": 113908
+  },
+  {
+    "accessoriesIds": [
+      9,
+      8
+    ],
+    "yearOfRelease": 1979,
+    "modelId": 21,
+    "wasInAccident": true,
+    "brandId": 13,
+    "ownerId": 5,
+    "mileage": 199140
+  },
+  {
+    "accessoriesIds": [
+      13,
+      8,
+      14,
+      4,
+      10,
+      3
+    ],
+    "yearOfRelease": 1973,
+    "modelId": 7,
+    "wasInAccident": false,
+    "brandId": 16,
+    "ownerId": 4,
+    "mileage": 138609
+  },
+  {
+    "accessoriesIds": [
+      2,
+      12,
+      5,
+      11,
+      7
+    ],
+    "yearOfRelease": 1976,
+    "modelId": 3,
+    "wasInAccident": true,
+    "brandId": 14,
+    "ownerId": 3,
+    "mileage": 100598
+  },
+  {
+    "accessoriesIds": [
+      12,
+      13,
+      12,
+      15,
+      13,
+      13
+    ],
+    "yearOfRelease": 2006,
+    "modelId": 17,
+    "wasInAccident": true,
+    "brandId": 6,
+    "ownerId": 2,
+    "mileage": 150013
+  },
+  {
+    "accessoriesIds": [
+      7,
+      8,
+      7,
+      5,
+      10,
+      10
+    ],
+    "yearOfRelease": 1979,
+    "modelId": 9,
+    "wasInAccident": false,
+    "brandId": 23,
+    "ownerId": 3,
+    "mileage": 85830
+  },
+  {
+    "accessoriesIds": [
+      9,
+      9,
+      12,
+      14,
+      3
+    ],
+    "yearOfRelease": 1995,
+    "modelId": 6,
+    "wasInAccident": false,
+    "brandId": 8,
+    "ownerId": 5,
+    "mileage": 82563
+  },
+  {
+    "accessoriesIds": [
+      6,
+      3
+    ],
+    "yearOfRelease": 2016,
+    "modelId": 26,
+    "wasInAccident": true,
+    "brandId": 1,
+    "ownerId": 1,
+    "mileage": 59855
+  },
+  {
+    "accessoriesIds": [
+      4,
+      14,
+      1
+    ],
+    "yearOfRelease": 1992,
+    "modelId": 26,
+    "wasInAccident": true,
+    "brandId": 19,
+    "ownerId": 3,
+    "mileage": 19591
+  },
+  {
+    "accessoriesIds": [
+      8,
+      1
+    ],
+    "yearOfRelease": 1990,
+    "modelId": 5,
+    "wasInAccident": false,
+    "brandId": 21,
+    "ownerId": 2,
+    "mileage": 154587
+  },
+  {
+    "accessoriesIds": [
+      13,
+      14,
+      14,
+      13
+    ],
+    "yearOfRelease": 1986,
+    "modelId": 15,
+    "wasInAccident": false,
+    "brandId": 24,
+    "ownerId": 4,
+    "mileage": 77117
+  },
+  {
+    "accessoriesIds": [
+      6,
+      13,
+      8,
+      6
+    ],
+    "yearOfRelease": 2005,
+    "modelId": 7,
+    "wasInAccident": false,
+    "brandId": 13,
+    "ownerId": 2,
+    "mileage": 176968
+  },
+  {
+    "accessoriesIds": [
+      1,
+      4,
+      13,
+      6,
+      3
+    ],
+    "yearOfRelease": 2009,
+    "modelId": 4,
+    "wasInAccident": false,
+    "brandId": 24,
+    "ownerId": 3,
+    "mileage": 87632
+  },
+  {
+    "accessoriesIds": [
+      11,
+      11,
+      13
+    ],
+    "yearOfRelease": 1991,
+    "modelId": 7,
+    "wasInAccident": true,
+    "brandId": 4,
+    "ownerId": 1,
+    "mileage": 168490
+  },
+  {
+    "accessoriesIds": [
+      14,
+      7,
+      3,
+      5,
+      14
+    ],
+    "yearOfRelease": 1976,
+    "modelId": 6,
+    "wasInAccident": true,
+    "brandId": 25,
+    "ownerId": 4,
+    "mileage": 14369
+  },
+  {
+    "accessoriesIds": [
+      7,
+      9,
+      2
+    ],
+    "yearOfRelease": 2019,
+    "modelId": 22,
+    "wasInAccident": false,
+    "brandId": 9,
+    "ownerId": 4,
+    "mileage": 39071
+  },
+  {
+    "accessoriesIds": [
+      1,
+      15,
+      7,
+      7
+    ],
+    "yearOfRelease": 1974,
+    "modelId": 13,
+    "wasInAccident": true,
+    "brandId": 30,
+    "ownerId": 2,
+    "mileage": 158547
+  },
+  {
+    "accessoriesIds": [
+      4,
+      6,
+      15,
+      10
+    ],
+    "yearOfRelease": 1999,
+    "modelId": 14,
+    "wasInAccident": false,
+    "brandId": 26,
+    "ownerId": 2,
+    "mileage": 28934
+  },
+  {
+    "accessoriesIds": [
+      10,
+      13,
+      4,
+      6
+    ],
+    "yearOfRelease": 1998,
+    "modelId": 24,
+    "wasInAccident": true,
+    "brandId": 13,
+    "ownerId": 3,
+    "mileage": 126921
+  },
+  {
+    "accessoriesIds": [
+      8,
+      11,
+      7
+    ],
+    "yearOfRelease": 2021,
+    "modelId": 3,
+    "wasInAccident": false,
+    "brandId": 15,
+    "ownerId": 4,
+    "mileage": 99176
+  },
+  {
+    "accessoriesIds": [
+      12,
+      10,
+      4,
+      8
+    ],
+    "yearOfRelease": 1970,
+    "modelId": 17,
+    "wasInAccident": false,
+    "brandId": 30,
+    "ownerId": 4,
+    "mileage": 90018
+  },
+  {
+    "accessoriesIds": [
+      8,
+      15,
+      15,
+      2,
+      8
+    ],
+    "yearOfRelease": 2006,
+    "modelId": 13,
+    "wasInAccident": false,
+    "brandId": 3,
+    "ownerId": 5,
+    "mileage": 8060
+  },
+  {
+    "accessoriesIds": [
+      4,
+      4,
+      10,
+      14,
+      10
+    ],
+    "yearOfRelease": 2010,
+    "modelId": 10,
+    "wasInAccident": false,
+    "brandId": 8,
+    "ownerId": 2,
+    "mileage": 40765
+  },
+  {
+    "accessoriesIds": [
+      14,
+      4,
+      14
+    ],
+    "yearOfRelease": 1989,
+    "modelId": 14,
+    "wasInAccident": false,
+    "brandId": 18,
+    "ownerId": 4,
+    "mileage": 97191
+  },
+  {
+    "accessoriesIds": [
+      13,
+      1,
+      8,
+      12
+    ],
+    "yearOfRelease": 1976,
+    "modelId": 12,
+    "wasInAccident": true,
+    "brandId": 26,
+    "ownerId": 1,
+    "mileage": 189811
+  },
+  {
+    "accessoriesIds": [
+      9,
+      14,
+      9,
+      9
+    ],
+    "yearOfRelease": 1994,
+    "modelId": 17,
+    "wasInAccident": true,
+    "brandId": 28,
+    "ownerId": 5,
+    "mileage": 77042
+  },
+  {
+    "accessoriesIds": [
+      14,
+      1
+    ],
+    "yearOfRelease": 2000,
+    "modelId": 11,
+    "wasInAccident": false,
+    "brandId": 6,
+    "ownerId": 3,
+    "mileage": 111421
+  },
+  {
+    "accessoriesIds": [
+      7,
+      2,
+      8,
+      8
+    ],
+    "yearOfRelease": 1996,
+    "modelId": 22,
+    "wasInAccident": false,
+    "brandId": 26,
+    "ownerId": 5,
+    "mileage": 179988
+  },
+  {
+    "accessoriesIds": [
+      12,
+      1,
+      13,
+      7
+    ],
+    "yearOfRelease": 2002,
+    "modelId": 13,
+    "wasInAccident": false,
+    "brandId": 19,
+    "ownerId": 4,
+    "mileage": 73547
+  },
+  {
+    "accessoriesIds": [
+      13,
+      4,
+      6
+    ],
+    "yearOfRelease": 1991,
+    "modelId": 3,
+    "wasInAccident": true,
+    "brandId": 22,
+    "ownerId": 3,
+    "mileage": 20458
+  },
+  {
+    "accessoriesIds": [
+      11,
+      6,
+      1,
+      8
+    ],
+    "yearOfRelease": 1978,
+    "modelId": 5,
+    "wasInAccident": false,
+    "brandId": 11,
+    "ownerId": 4,
+    "mileage": 26053
+  },
+  {
+    "accessoriesIds": [
+      15,
+      3,
+      10,
+      1,
+      14,
+      7
+    ],
+    "yearOfRelease": 2010,
+    "modelId": 18,
+    "wasInAccident": false,
+    "brandId": 3,
+    "ownerId": 4,
+    "mileage": 169847
+  },
+  {
+    "accessoriesIds": [
+      11,
+      6,
+      1,
+      15,
+      8
+    ],
+    "yearOfRelease": 1988,
+    "modelId": 8,
+    "wasInAccident": false,
+    "brandId": 23,
+    "ownerId": 1,
+    "mileage": 99614
+  },
+  {
+    "accessoriesIds": [
+      10,
+      5,
+      1,
+      7,
+      12
+    ],
+    "yearOfRelease": 1973,
+    "modelId": 16,
+    "wasInAccident": false,
+    "brandId": 7,
+    "ownerId": 2,
+    "mileage": 180236
+  },
+  {
+    "accessoriesIds": [
+      14,
+      12,
+      15
+    ],
+    "yearOfRelease": 1974,
+    "modelId": 11,
+    "wasInAccident": true,
+    "brandId": 2,
+    "ownerId": 2,
+    "mileage": 194253
+  },
+  {
+    "accessoriesIds": [
+      5,
+      11,
+      14,
+      4,
+      5
+    ],
+    "yearOfRelease": 1971,
+    "modelId": 13,
+    "wasInAccident": true,
+    "brandId": 17,
+    "ownerId": 1,
+    "mileage": 169875
+  },
+  {
+    "accessoriesIds": [
+      11,
+      6,
+      8
+    ],
+    "yearOfRelease": 1984,
+    "modelId": 2,
+    "wasInAccident": false,
+    "brandId": 30,
+    "ownerId": 1,
+    "mileage": 122496
+  },
+  {
+    "accessoriesIds": [
+      1,
+      3,
+      9,
+      9,
+      6,
+      7
+    ],
+    "yearOfRelease": 1973,
+    "modelId": 26,
+    "wasInAccident": true,
+    "brandId": 2,
+    "ownerId": 4,
+    "mileage": 88265
+  },
+  {
+    "accessoriesIds": [
+      3,
+      8,
+      10
+    ],
+    "yearOfRelease": 2003,
+    "modelId": 1,
+    "wasInAccident": true,
+    "brandId": 29,
+    "ownerId": 5,
+    "mileage": 110374
+  },
+  {
+    "accessoriesIds": [
+      8,
+      15
+    ],
+    "yearOfRelease": 2013,
+    "modelId": 19,
+    "wasInAccident": false,
+    "brandId": 15,
+    "ownerId": 3,
+    "mileage": 120737
+  },
+  {
+    "accessoriesIds": [
+      11,
+      4,
+      5,
+      12,
+      7
+    ],
+    "yearOfRelease": 1992,
+    "modelId": 17,
+    "wasInAccident": false,
+    "brandId": 26,
+    "ownerId": 4,
+    "mileage": 112329
+  },
+  {
+    "accessoriesIds": [
+      9,
+      8,
+      5,
+      8,
+      13,
+      1
+    ],
+    "yearOfRelease": 1991,
+    "modelId": 12,
+    "wasInAccident": false,
+    "brandId": 7,
+    "ownerId": 1,
+    "mileage": 117083
+  },
+  {
+    "accessoriesIds": [
+      4,
+      6,
+      6,
+      2,
+      6
+    ],
+    "yearOfRelease": 2012,
+    "modelId": 5,
+    "wasInAccident": false,
+    "brandId": 2,
+    "ownerId": 4,
+    "mileage": 193194
+  },
+  {
+    "accessoriesIds": [
+      3,
+      12
+    ],
+    "yearOfRelease": 2010,
+    "modelId": 5,
+    "wasInAccident": false,
+    "brandId": 31,
+    "ownerId": 4,
+    "mileage": 142045
+  },
+  {
+    "accessoriesIds": [
+      5,
+      6,
+      7,
+      14,
+      2,
+      13
+    ],
+    "yearOfRelease": 2013,
+    "modelId": 8,
+    "wasInAccident": false,
+    "brandId": 31,
+    "ownerId": 3,
+    "mileage": 9661
+  },
+  {
+    "accessoriesIds": [
+      2,
+      7,
+      7,
+      2
+    ],
+    "yearOfRelease": 2011,
+    "modelId": 24,
+    "wasInAccident": true,
+    "brandId": 11,
+    "ownerId": 5,
+    "mileage": 51838
+  },
+  {
+    "accessoriesIds": [
+      11,
+      7,
+      1,
+      9,
+      4
+    ],
+    "yearOfRelease": 1978,
+    "modelId": 10,
+    "wasInAccident": false,
+    "brandId": 11,
+    "ownerId": 2,
+    "mileage": 2158
+  },
+  {
+    "accessoriesIds": [
+      7,
+      13,
+      2,
+      15
+    ],
+    "yearOfRelease": 1975,
+    "modelId": 25,
+    "wasInAccident": false,
+    "brandId": 18,
+    "ownerId": 1,
+    "mileage": 136731
+  },
+  {
+    "accessoriesIds": [
+      14,
+      4,
+      9,
+      6,
+      5
+    ],
+    "yearOfRelease": 1980,
+    "modelId": 1,
+    "wasInAccident": false,
+    "brandId": 16,
+    "ownerId": 1,
+    "mileage": 13660
+  },
+  {
+    "accessoriesIds": [
+      8,
+      10,
+      3,
+      5
+    ],
+    "yearOfRelease": 1997,
+    "modelId": 3,
+    "wasInAccident": false,
+    "brandId": 14,
+    "ownerId": 2,
+    "mileage": 25744
+  },
+  {
+    "accessoriesIds": [
+      6,
+      14,
+      1
+    ],
+    "yearOfRelease": 1999,
+    "modelId": 23,
+    "wasInAccident": false,
+    "brandId": 8,
+    "ownerId": 5,
+    "mileage": 38551
+  },
+  {
+    "accessoriesIds": [
+      1,
+      9,
+      9,
+      15,
+      13,
+      8
+    ],
+    "yearOfRelease": 2011,
+    "modelId": 8,
+    "wasInAccident": false,
+    "brandId": 26,
+    "ownerId": 5,
+    "mileage": 76725
+  },
+  {
+    "accessoriesIds": [
+      5,
+      7,
+      8,
+      6
+    ],
+    "yearOfRelease": 1980,
+    "modelId": 26,
+    "wasInAccident": false,
+    "brandId": 6,
+    "ownerId": 3,
+    "mileage": 150792
+  },
+  {
+    "accessoriesIds": [
+      11,
+      8,
+      9,
+      4,
+      10
+    ],
+    "yearOfRelease": 2024,
+    "modelId": 25,
+    "wasInAccident": false,
+    "brandId": 5,
+    "ownerId": 5,
+    "mileage": 75410
+  },
+  {
+    "accessoriesIds": [
+      6,
+      13
+    ],
+    "yearOfRelease": 2002,
+    "modelId": 18,
+    "wasInAccident": true,
+    "brandId": 6,
+    "ownerId": 5,
+    "mileage": 161996
+  },
+  {
+    "accessoriesIds": [
+      4,
+      14
+    ],
+    "yearOfRelease": 1981,
+    "modelId": 4,
+    "wasInAccident": false,
+    "brandId": 20,
+    "ownerId": 4,
+    "mileage": 165883
+  },
+  {
+    "accessoriesIds": [
+      6,
+      15,
+      1,
+      8,
+      15,
+      11
+    ],
+    "yearOfRelease": 2002,
+    "modelId": 23,
+    "wasInAccident": true,
+    "brandId": 17,
+    "ownerId": 1,
+    "mileage": 190310
+  },
+  {
+    "accessoriesIds": [
+      5,
+      6
+    ],
+    "yearOfRelease": 2012,
+    "modelId": 12,
+    "wasInAccident": false,
+    "brandId": 18,
+    "ownerId": 2,
+    "mileage": 191474
+  },
+  {
+    "accessoriesIds": [
+      2,
+      1,
+      12,
+      14
+    ],
+    "yearOfRelease": 2000,
+    "modelId": 8,
+    "wasInAccident": true,
+    "brandId": 4,
+    "ownerId": 5,
+    "mileage": 79665
+  },
+  {
+    "accessoriesIds": [
+      8,
+      15,
+      2,
+      13,
+      4
+    ],
+    "yearOfRelease": 1979,
+    "modelId": 21,
+    "wasInAccident": false,
+    "brandId": 5,
+    "ownerId": 1,
+    "mileage": 52848
+  }
+]

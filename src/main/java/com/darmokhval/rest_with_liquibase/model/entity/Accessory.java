@@ -28,6 +28,10 @@ public class Accessory {
     )
     private List<Car> cars = new ArrayList<>();
 
+    public Accessory(String accessoryName) {
+        this.accessoryName = accessoryName;
+    }
+
     // Method to add a car and ensure bidirectional consistency
     public void addCar(Car car) {
         if (!this.cars.contains(car)) {

@@ -22,23 +22,30 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OwnerService {
     private final OwnerRepository ownerRepository;
-    private final AccessoryRepository accessoryRepository;
-    private final CarRepository carRepository;
     private final OwnerMapper ownerMapper;
 
-//    TODO create owner without cars. Assign car to owner when creating car.
-    public Page<OwnerDTO> getOwners(Pageable pageable) {
-        return ownerRepository.findAll(pageable).map(ownerMapper::convertOwnerToDTO);
+//    TODO unit tests for owner and car services. and readme!!! and postman collection.
+//     and check again if this program is working correctly.
+    public List<OwnerDTO> getOwners() {
+        return ownerRepository.findAll().stream().map(ownerMapper::convertOwnerToDTO).toList();
     }
 
-//    Tested, create, validation is working.
+    /**
+     * Method creates owner with provided data. Validates provided email, if already user with this email exists ->
+     * throws IllegalArgumentException.
+     */
+    @Transactional
     public OwnerDTO createOwner(OwnerDTO ownerDTO) {
         checkIfEmailIsUsed(ownerDTO.getEmail(), null);
         Owner owner = ownerRepository.save(ownerMapper.convertDTOToOwnerEntity(ownerDTO));
         return ownerMapper.convertOwnerToDTO(owner);
     }
 
-//    tested, update working on owner, if existing email -> error, validation confirm too.
+    /**
+     * method that updates user by given ID, otherwise throws IAE.
+     * Checks if email provided already in use, if already in database and not related to current user -> throws IAE.
+     */
+    @Transactional
     public OwnerDTO updateOwner(OwnerDTO ownerDTO, Long id) {
         Optional<Owner> existingOwner = ownerRepository.findById(id);
         if(existingOwner.isPresent()) {
@@ -57,6 +64,28 @@ public class OwnerService {
     }
 
     /**
+     * method deletes user from database if user can be found by ID.
+     * explicitly deletes all other entities that related to user (car), and makes sure to keep relations consistent.
+     */
+    @Transactional
+    public String deleteOwner(Long id) {
+        Optional<Owner> existingOwner = ownerRepository.findById(id);
+        if(existingOwner.isEmpty()) {
+            throw new IllegalArgumentException(String.format("Owner with ID %s was not found!", id));
+        }
+        Owner owner = existingOwner.get();
+        for (Car car: new ArrayList<>(owner.getCars())) {
+            for(Accessory accessory: new ArrayList<>(car.getAccessories())) {
+                car.removeAccessory(accessory.getId());
+                accessory.removeCar(car.getId());
+            }
+            owner.removeCar(car.getId());
+        }
+        ownerRepository.deleteById(id);
+        return String.format("Owner with ID %s was successfully deleted!", id);
+    }
+
+    /**
      * method checks if owner with provided email already exists in database.
      * If creating and email is in use -> throw IAE.
      * If updating and email exists and not assigned to current user -> throw IAE too
@@ -68,26 +97,5 @@ public class OwnerService {
             throw new IllegalArgumentException(String.format("Email %s already taken!",
                     email));
         }
-    }
-
-    @Transactional
-    public String deleteOwner(Long id) {
-        Optional<Owner> existingOwner = ownerRepository.findById(id);
-        if(existingOwner.isEmpty()) {
-            throw new IllegalArgumentException(String.format("Owner with ID %s was not found!", id));
-        }
-
-        Owner owner = existingOwner.get();
-
-        for (Car car: new ArrayList<>(owner.getCars())) {
-            for(Accessory accessory: new ArrayList<>(car.getAccessories())) {
-                car.removeAccessory(accessory.getId());
-                accessory.removeCar(car.getId());
-            }
-            owner.removeCar(car.getId());
-        }
-
-        ownerRepository.deleteById(id);
-        return String.format("Owner with ID %s was successfully deleted!", id);
     }
 }

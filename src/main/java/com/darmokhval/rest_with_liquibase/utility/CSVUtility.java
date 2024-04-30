@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class CSVUtility {
     /**
-     * generating fcsv ile from passed data.
+     * generates csv file from passed data.
      * @throws IOException
      */
     public String generateCSVString(List<CarDTOLight> cars) throws IOException {

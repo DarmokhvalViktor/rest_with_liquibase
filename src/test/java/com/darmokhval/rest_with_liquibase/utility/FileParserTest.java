@@ -1,106 +1,109 @@
 package com.darmokhval.rest_with_liquibase.utility;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
+import com.darmokhval.rest_with_liquibase.exception.IOFileException;
+import com.darmokhval.rest_with_liquibase.model.dto.CarDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.springframework.mock.web.MockMultipartFile;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+class FileParserTest {
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final FileParser fileParser = new FileParser(objectMapper);
 
-public class FileParserTest {
-    private final static String emptyDir = "src" + File.separator + "test" + File.separator + "empty" + File.separator;
-    private final static String notEmptyDir = "src" + File.separator + "test" + File.separator + "not_empty" + File.separator;
+    @Test
+    void testReadFromFile_ValidJson() {
+        Set<CarDTO> carDTOList = new HashSet<>();
+        String validJsonContent = """
+            [
+                {
+                    "modelId": 1,
+                    "brandId": 1,
+                    "ownerId": 1,
+                    "yearOfRelease": 2020,
+                    "mileage": 10000,
+                    "wasInAccident": false,
+                    "accessoriesIds": [1, 2]
+                }
+            ]
+        """;
+        MockMultipartFile validMultipartFile = new MockMultipartFile(
+                "file", "cars.json", "application/json", validJsonContent.getBytes());
 
-    private FileParser fileParser;
+        long failedWrites = fileParser.readFromFile(validMultipartFile, carDTOList, 0);
 
-    @BeforeEach
-    void setUp() {
-        fileParser = new FileParser();
-        GenerateFilesForTestCases generator = new GenerateFilesForTestCases();
-        generator.createDirectory(emptyDir);
-        generator.createDirectory(notEmptyDir);
-    }
-
-    @AfterAll
-    static void removeDirs() {
-        if(new File(emptyDir).delete()) {
-            System.out.println("Deleted empty directory");
-        }
-        if(new File(notEmptyDir).delete()) {
-            System.out.println("Deleted not empty directory");
-        }
+        assertEquals(0, failedWrites);
+        assertEquals(1, carDTOList.size()); // One valid CarDTO should be added
     }
 
     @Test
-    void testParseFileWithJson() {
-        File file = new File(notEmptyDir + "test.json");
-        String searchedField = "fieldName";
-        Map<String, Integer> countFileMap = new HashMap<>();
-        createFileToTest("test", ".json", true);
+    void testReadFromFile_InvalidJson() {
+        Set<CarDTO> carDTOList = new HashSet<>();
+        String invalidJsonContent = """
+            [
+                {
+                    "modelId": -1, // Invalid model ID
+                    "brandId": 1,
+                    "ownerId": 1,
+                    "yearOfRelease": 2020,
+                    "mileage": 10000,
+                    "wasInAccident": false,
+                    "accessoriesIds": [1, 2]
+                }
+            ]
+        """;
+        MockMultipartFile invalidMultipartFile = new MockMultipartFile(
+                "file321", "cars.json", "application/json", invalidJsonContent.getBytes());
 
-        fileParser.parseFile(file, searchedField, countFileMap);
-        assertEquals(3, countFileMap.size());
-        assertEquals(1, countFileMap.get("value1"));
-        assertEquals(1, countFileMap.get("value2"));
-        assertEquals(1, countFileMap.get("value3"));
-        deleteTestFile(file);
+        long failedWrites = fileParser.readFromFile(invalidMultipartFile, carDTOList, 0);
+
+        assertEquals(1, failedWrites); // Should fail due to invalid model ID
+        assertTrue(carDTOList.isEmpty()); // Invalid data should not be added
     }
 
     @Test
-    void testParseFileWithNonJson() {
-        File file = new File("src" + File.separator + "test" + File.separator + "not_empty" + File.separator + "test.txt");
-        String searchedField = "fieldName";
-        Map<String, Integer> countFileMap = new HashMap<>();
-        createFileToTest("test", ".txt", true);
+    void testReadFromFile_IOError() {
+        Set<CarDTO> carDTOList = new HashSet<>();
+        MockMultipartFile nullMultipartFile = null;
 
-        fileParser.parseFile(file, searchedField, countFileMap);
-        assertEquals(0, countFileMap.size());
-        deleteTestFile(file);
+        assertThrows(IOFileException.class, () -> {
+            fileParser.readFromFile(nullMultipartFile, carDTOList, 0);
+        });
     }
 
     @Test
-    void testParseFileWithNullFile() {
-        File file = null;
-        String searchedField = "fieldName";
-        Map<String, Integer> countFileMap = new HashMap<>();
+    void testReadFromFile_EmptyFile() {
+        Set<CarDTO> carDTOList = new HashSet<>();
+        MockMultipartFile emptyMultipartFile = new MockMultipartFile(
+                "file", "cars.json", "application/json", new byte[0]);
 
-        fileParser.parseFile(file, searchedField, countFileMap);
-        assertEquals(0, countFileMap.size());
+        long failedWrites = fileParser.readFromFile(emptyMultipartFile, carDTOList, 0);
+
+        assertEquals(0, failedWrites); // No data, no parsing errors
+        assertTrue(carDTOList.isEmpty()); // No valid CarDTO should be added
     }
 
     @Test
-    void testParseEmptyJsonFile() {
-        createFileToTest("test_empty", ".json", false);
-        File file = new File(notEmptyDir + "test_empty.json");
-        String searchedField = "fieldName";
-        Map<String, Integer> countFieldMap = new HashMap<>();
+    void testReadFromFile_MissingRequiredFields() {
+        Set<CarDTO> carDTOList = new HashSet<>();
+        String missingFieldsJson = """
+            [
+                {
+                    "modelId": 1,
+                    "brandId": 1,
+                    "yearOfRelease": 2020 // Missing ownerId and other fields
+                }
+            ]
+        """;
+        MockMultipartFile multipartFile = new MockMultipartFile(
+                "file", "cars.json", "application/json", missingFieldsJson.getBytes());
 
-        fileParser.parseFile(file, searchedField, countFieldMap);
-        assertEquals(0, countFieldMap.size());
-        deleteTestFile(file);
-    }
+        long failedWrites = fileParser.readFromFile(multipartFile, carDTOList, 0);
 
-    private void createFileToTest(String filename, String fileExtension, boolean content) {
-        File file = new File(notEmptyDir + filename + fileExtension);
-        try (FileWriter writer = new FileWriter(file)) {
-            if(content) {
-                writer.write("{\"fieldName\": \"value1, value2, value3\"}");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void deleteTestFile(File file) {
-        if(file.delete()) {
-            System.out.println("File deleted");
-        } else {
-            System.out.println("Cannot delete a file");
-        }
+        assertEquals(1, failedWrites); // Should fail due to missing required fields
+        assertTrue(carDTOList.isEmpty()); // No valid CarDTO should be added
     }
 }

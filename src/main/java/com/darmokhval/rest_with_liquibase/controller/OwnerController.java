@@ -4,12 +4,11 @@ import com.darmokhval.rest_with_liquibase.model.dto.OwnerDTO;
 import com.darmokhval.rest_with_liquibase.service.OwnerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,9 +17,8 @@ public class OwnerController {
     private final OwnerService ownerService;
 
     @GetMapping()
-    public ResponseEntity<Page<OwnerDTO>> getOwners(
-            @PageableDefault(page = 0, size = 20) Pageable pageable){
-        return ResponseEntity.status(HttpStatus.OK).body(ownerService.getOwners(pageable));
+    public ResponseEntity<List<OwnerDTO>> getOwners(){
+        return ResponseEntity.status(HttpStatus.OK).body(ownerService.getOwners());
     }
     @PostMapping()
     public ResponseEntity<OwnerDTO> createOwner(

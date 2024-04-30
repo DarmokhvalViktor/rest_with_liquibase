@@ -14,16 +14,14 @@ import java.nio.file.Paths;
 import java.util.*;
 
 /**
- * This class actually can be deleted!!! Only use to generate some .json files, so no point to test this. Or is it?
- * Utility class to generate files to test if the program works.
- * methods that starts with "generateRandom..." -> utility methods to generates random values to fill in file.
- * main method -> createFile, final values can be changed to test different conditions.
- * method .createFiles() writes line-by-line, so it shouldn't consume too much RAM.
+ * Utility class to generate file with data to test if the program works.
+ * Values are hardcoded to ensure that some of them will be valid, same are not.
  */
 @Slf4j
 @Component
 public class RandomFileWithCarsGenerator {
     private static final Random random = new Random();
+
 
     public void generateFile(int numberOfRecords, String filePath) {
 
@@ -50,6 +48,11 @@ public class RandomFileWithCarsGenerator {
 
             for (int i = 0; i < numberOfRecords; i++) {
                 CarDTO car = generateRandomCar(i + 1);
+                JSONArray accessoryArray = new JSONArray();
+                for (Long accessoryId : generateRandomAccessoriesIds()) {
+                    accessoryArray.put(accessoryId);
+                }
+
                 JSONObject json = new JSONObject();
                 json.put("modelId", car.getModelId());
                 json.put("brandId", car.getBrandId());
@@ -57,7 +60,7 @@ public class RandomFileWithCarsGenerator {
                 json.put("yearOfRelease", car.getYearOfRelease());
                 json.put("mileage", car.getMileage());
                 json.put("wasInAccident", car.getWasInAccident());
-                json.put("accessoriesIds", car.getAccessoriesIds());
+                json.put("accessoriesIds", accessoryArray);
                 carArray.put(json);
             }
 
@@ -82,8 +85,8 @@ public class RandomFileWithCarsGenerator {
         return car;
     }
 
-    private Set<Long> generateRandomAccessoriesIds() {
-        Set<Long> accessories = new HashSet<>();
+    private List<Long> generateRandomAccessoriesIds() {
+        List<Long> accessories = new ArrayList<>();
         int count = random.nextInt(6 - 2 + 1) + 2; // Between 2 and 6 accessories
         for (int i = 0; i < count; i++) {
             accessories.add((long) random.nextInt(15) + 1);

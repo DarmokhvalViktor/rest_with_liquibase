@@ -22,8 +22,7 @@ public class OwnerDTO {
     private String email;
     private List<CarDTOLight> cars;
 
-    public OwnerDTO(Long id, String name, String lastname, String email) {
-        this.id = id;
+    public OwnerDTO(String name, String lastname, String email) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;

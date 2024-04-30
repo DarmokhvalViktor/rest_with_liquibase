@@ -51,7 +51,6 @@ public class CarSpecification {
             if (accessoryId == null) {
                 return criteriaBuilder.conjunction();
             }
-            // Join with accessories and check for the specific accessory ID
             var accessoriesJoin = root.join("accessories", JoinType.INNER);
             return criteriaBuilder.equal(accessoriesJoin.get("id"), accessoryId);
         };

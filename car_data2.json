@@ -1,0 +1,32 @@
+[
+  {
+    "accessoriesIds": [
+      3,
+      11
+    ],
+    "yearOfRelease": 1997,
+    "modelId": 19,
+    "wasInAccident": false,
+    "brandId": 15,
+    "ownerId": 2,
+    "mileage": 166065
+  },
+  {
+    "accessoriesIds": [
+      2,
+      3,
+      4,
+      5,
+      1
+    ],
+    "yearOfRelease": 2005,
+    "modelId": 16,
+    "wasInAccident": true,
+    "brandId": 20,
+    "ownerId": 1,
+    "mileage": 38521
+  },
+  {
+    "fdavasd": "fdsa"
+  }
+]

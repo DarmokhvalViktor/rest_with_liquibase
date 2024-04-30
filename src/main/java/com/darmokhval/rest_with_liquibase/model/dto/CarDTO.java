@@ -29,8 +29,9 @@ public class CarDTO {
     @Min(value = 1970, message = "Release year shouldn't be earlier than 1970")
     private Integer yearOfRelease;
     @Positive
+    @NotNull(message = "Mileage shouldn't be null or negative")
     private Integer mileage;
-    @NotNull
+    @NotNull(message = "Must be specified if car was in accident or not.")
     private Boolean wasInAccident;
     @NotEmpty(message = "List accessoriesIds must not be empty")
     @Size(min = 2, message = "List accessoriesIds must contain at least 2 items")
@@ -38,4 +39,14 @@ public class CarDTO {
                 @NotNull (message = "Accessory ID shouldn't be null.")
                 @Positive (message = "Accessory ID must be positive.")
                         Long> accessoriesIds;
+
+    public CarDTO(Long modelId, Long brandId, Long ownerId, Integer yearOfRelease, Integer mileage, Boolean wasInAccident, List<Long> accessoriesIds) {
+        this.modelId = modelId;
+        this.brandId = brandId;
+        this.ownerId = ownerId;
+        this.yearOfRelease = yearOfRelease;
+        this.mileage = mileage;
+        this.wasInAccident = wasInAccident;
+        this.accessoriesIds = accessoriesIds;
+    }
 }

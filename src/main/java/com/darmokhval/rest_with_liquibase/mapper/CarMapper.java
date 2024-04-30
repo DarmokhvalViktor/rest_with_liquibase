@@ -10,13 +10,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Utility method to convert Car entity into one of DTOs or vice versa.
+ */
 @Component
 public class CarMapper {
-
-//TODO in post we are receiving only id or name? brand/model, to get from DB and assign that to car?
-//    TODO validation of carDTO, make sure that we passing valid data.
-//    TODO dto to entity only when saving???
-//    TODO entity to dto, for retrieving
 
     public CarDTOLight carEntityToDTOLight(Car car) {
         CarDTOLight carDTO = new CarDTOLight();

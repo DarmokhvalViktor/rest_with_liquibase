@@ -5,25 +5,22 @@ import com.darmokhval.rest_with_liquibase.mapper.CarMapper;
 import com.darmokhval.rest_with_liquibase.model.dto.*;
 import com.darmokhval.rest_with_liquibase.model.entity.*;
 import com.darmokhval.rest_with_liquibase.repository.*;
-import com.darmokhval.rest_with_liquibase.utility.CSVUtility;
-import com.darmokhval.rest_with_liquibase.utility.RandomFileWithCarsGenerator;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import com.darmokhval.rest_with_liquibase.utility.*;
 import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * Class responsible for CRUD operations upon "Car" entity.
+ */
 @Service
 @RequiredArgsConstructor
 public class CarService {
@@ -34,16 +31,19 @@ public class CarService {
     private final ModelRepository modelRepository;
     private final OwnerRepository ownerRepository;
     private final CSVUtility csvUtility;
-    private final ObjectMapper objectMapper;
-    private final RandomFileWithCarsGenerator fileGenerator;
+    private final CarSpecificationBuilder carSpecificationBuilder;
+    private final FileParser fileParser;
+    private final PaginationUtility paginationUtility;
+    private final CarValidator carValidator;
+    private final RandomFileWithCarsGenerator generator;
 
-//    Method creates .json file to test upload methods. File contains random data, some of that records are invalid
+    //    Method creates .json file to test upload methods. File contains random data, some of that records are invalid
 //    on purpose, and these records shouldn't be written to database;
     @PostConstruct
     public void generateFile() {
         int numberOfRecords = 200;
         String filepath = "src/main/resources/car_data.json";
-        fileGenerator.generateFile(numberOfRecords, filepath);
+        generator.generateFile(numberOfRecords, filepath);
     }
 
     public Page<CarDTOLight> findCars(CarSearchRequest request) {
@@ -52,9 +52,9 @@ public class CarService {
         if (request == null) {
             request = new CarSearchRequest(); // All fields are null, resulting in a query for all cars
         }
-        PaginationConfig paginationConfig = checkIfPaginationPresent(request);
-        Pageable pageable = getPageable(paginationConfig);
-        Specification<Car> spec = getCarSpecification(request);
+        PaginationConfig paginationConfig = paginationUtility.checkIfPaginationPresent(request);
+        Pageable pageable = paginationUtility.getPageable(paginationConfig);
+        Specification<Car> spec = carSpecificationBuilder.getCarSpecification(request);
         Page<Car> filteredCars = carRepository.findAll(spec, pageable);
         return filteredCars.map(carMapper::carEntityToDTOLight);
     }
@@ -66,7 +66,7 @@ public class CarService {
         if (request == null) {
             request = new CarSearchRequest(); // Default to retrieving all cars
         }
-        Specification<Car> spec = getCarSpecification(request);
+        Specification<Car> spec = carSpecificationBuilder.getCarSpecification(request);
         List<CarDTOLight> filteredCars = carRepository.findAll(spec)
                 .stream()
                 .map(carMapper::carEntityToDTOLight)
@@ -87,6 +87,7 @@ public class CarService {
     }
 
 //    Creating, valid fields.
+    @Transactional
     public CarDTO createCar(CarDTO carDTO) {
         Car car = new Car();
         car = processCar(carDTO, car);
@@ -94,6 +95,7 @@ public class CarService {
     }
 
     //update working.
+    @Transactional
     public CarDTO updateCar(CarDTO carDTO, Long id) {
         Car car = carRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException(String.format("Car with ID %d was not found", id)));
@@ -107,24 +109,36 @@ public class CarService {
      * @param multipartFile file to read from.
      * @return Map with failed and success count.
      */
+//    TODO add in readme that we are assuming that .json file will be in valid format.
+//     Maybe invalid fields, but structure is correct.
+//     Plus check and add comments into service layers. Add unit tests for service layers???
+    @Transactional
     public Map<String, Long> populateDatabaseFromFile(MultipartFile multipartFile) {
+        if(multipartFile == null || multipartFile.isEmpty()) {
+            throw new IllegalArgumentException("File shouldn't be null or empty.");
+        }
         Map<String, Long> resultMap = new HashMap<>();
         long successfulWrites = 0;
         long failedWrites = 0;
 
         Set<CarDTO> carDTOList = new HashSet<>();
-        failedWrites = readFromFile(multipartFile, carDTOList, failedWrites);
+        failedWrites = fileParser.readFromFile(multipartFile, carDTOList, failedWrites);
 
         for(CarDTO carDTO: carDTOList) {
-            String error = validateEntities(carDTO);
-            if(error.isBlank()) {
-                Car car = new Car();
-                car = assignValues(carDTO, car);
-//                carRepository.save(car);
-                successfulWrites++;
-            } else {
+            try {
+                String error = carValidator.validate(carDTO);
+                if(error.isBlank()) {
+                    Car car = new Car();
+                    assignValues(carDTO, car);
+                    successfulWrites++;
+                } else {
+                    failedWrites++;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error processing car: " + e.getMessage());
                 failedWrites++;
             }
+
         }
         System.out.println(failedWrites + "Failed writes");
         resultMap.put("successfulWrites", successfulWrites);
@@ -132,31 +146,8 @@ public class CarService {
         return resultMap;
     }
 
-//    TODO refactor code and extract methods into separate classes.
-
-    private long readFromFile(MultipartFile multipartFile, Set<CarDTO> carDTOList, long failedWrites) {
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        try {
-            JsonNode jsonNode = objectMapper.readTree(multipartFile.getInputStream());
-            for (JsonNode node : jsonNode) {
-                try {
-                    // Attempt to deserialize each JSON node into a CarDTO
-                    CarDTO carDTO = objectMapper.treeToValue(node, CarDTO.class);
-                    carDTOList.add(carDTO);
-                } catch (Exception e) {
-                    failedWrites++;
-                }
-            }
-        } catch (IOException e) {
-            throw new IOFileException(String.format("Error occurred while trying to read a file %s",
-                    multipartFile.getName()));
-        }
-        System.out.println(failedWrites + "Failed writes");
-        return failedWrites;
-    }
-
-
     //    Working, delete if exists, when wrong id handled too.
+    @Transactional
     public String deleteCar(Long id) {
         if(id == null) {
             throw new IllegalArgumentException("Car ID must be not null.");
@@ -178,51 +169,17 @@ public class CarService {
      * utility, save entity into DB if validation passes. Else throws IAE.
      */
     private Car processCar(CarDTO carDTO, Car car) {
-        String error = validateEntities(carDTO);
+        String error = carValidator.validate(carDTO);
         if (!error.isBlank()) {
             throw new IllegalArgumentException(error);
         }
         System.out.println("Car validation is correct, moving to assigning values!!!");
         return assignValues(carDTO, car);
-//        return carRepository.save(car);
     }
 
     /**
-     * validate given data to save in db.
-     * @param carDTO object to validate its fields.
-     * @return empty string if no errors or message about error.
+     * assigns values from dto to entity. Used in conjunction with validation method.
      */
-    private String validateEntities(CarDTO carDTO) {
-        if (!modelRepository.existsById(carDTO.getModelId())) {
-            return "Invalid model ID";
-        }
-
-        if (!brandRepository.existsById(carDTO.getBrandId())) {
-            return "Invalid brand ID";
-        }
-
-        if (!ownerRepository.existsById(carDTO.getOwnerId())) {
-            return "Invalid owner ID";
-        }
-
-        if(carDTO.getYearOfRelease() > LocalDate.now().getYear()){
-            return "Year of release cannot be greater than the current year.";
-        }
-
-        for (Long accessoryId : carDTO.getAccessoriesIds()) {
-            if (!accessoryRepository.existsById(accessoryId)) {
-                return "Invalid accessory ID: " + accessoryId;
-            }
-        }
-
-        return "";
-    }
-
-    /**
-     * assigns values from dto to entity. Not validating values, so could cause error while writing to DB!.
-     * Use with validation method above.
-     */
-
     private Car assignValues(CarDTO carDTO, Car car) {
         Model model = modelRepository.findById(carDTO.getModelId()).get();
         Brand brand = brandRepository.findById(carDTO.getBrandId()).get();
@@ -263,81 +220,4 @@ public class CarService {
         }
     }
 
-    private PaginationConfig checkIfPaginationPresent(CarSearchRequest request) {
-        if(request.getPaginationConfig() == null) {
-            return new PaginationConfig(0, 20);
-        } else {
-            return request.getPaginationConfig();
-        }
-    }
-
-    /**
-     * check for input how many pages per page requested. If number not 20, 50 or 100, change it to 20 per page.
-     * Returns Pageable
-     */
-    private Pageable getPageable(PaginationConfig paginationConfig) {
-        int resultsPerPage = switch (paginationConfig.getResultsPerPage()) {
-            case 20, 50, 100 -> paginationConfig.getResultsPerPage();
-            default -> 20;
-        };
-        return PageRequest.of(paginationConfig.getPageNumber(), resultsPerPage);
-    }
-
-    /**
-     *create specification from user's input to return records that matches input fields.
-     * Method verbose on purpose to avoid NullPointerException.
-     */
-    private Specification<Car> getCarSpecification(CarSearchRequest request) {
-        Specification<Car> spec = Specification.where(null); //starting with empty specs.
-        if(request == null) {
-            return spec;
-        }
-        if(request.getBrand() != null) {
-            if(request.getBrand().getBrandName() != null) {
-                spec = spec.and(CarSpecification.hasBrandByName(request.getBrand().getBrandName()));
-            }
-            if(request.getBrand().getId() != null) {
-                spec = spec.and(CarSpecification.hasBrandById(request.getBrand().getId()));
-            }
-        }
-        if(request.getModel() != null) {
-            if(request.getModel().getModelName() != null) {
-                spec = spec.and(CarSpecification.hasModelByName(request.getModel().getModelName()));
-            }
-            if(request.getModel().getId() != null) {
-                spec = spec.and(CarSpecification.hasModelById(request.getModel().getId()));
-            }
-        }
-        if(request.getWasInAccident() != null) {
-            spec = spec.and(CarSpecification.hasWasInAccident(request.getWasInAccident()));
-        }
-        if(request.getYearOfRelease() != null) {
-            spec = spec.and(CarSpecification.hasYearOfRelease(request.getYearOfRelease()));
-        }
-        if(request.getMileage() != null) {
-            spec = spec.and(CarSpecification.hasMileage(request.getMileage()));
-        }
-        if(request.getOwner() != null) {
-            if(request.getOwner().getId() != null) {
-                spec = spec.and(CarSpecification.hasOwnerId(request.getOwner().getId()));
-            }
-            if(request.getOwner().getName() != null) {
-                spec = spec.and(CarSpecification.hasOwnerName(request.getOwner().getName()));
-            }
-            if(request.getOwner().getLastname() != null) {
-                spec = spec.and(CarSpecification.hasOwnerLastname(request.getOwner().getLastname()));
-            }
-        }
-        if(request.getAccessoryDTOList() != null) {
-            for(AccessoryDTO accessoryDTO : request.getAccessoryDTOList()) {
-                if(accessoryDTO.getId() != null) {
-                    spec = spec.and(CarSpecification.hasAccessoryById(accessoryDTO.getId()));
-                }
-                if(accessoryDTO.getAccessoryName() != null) {
-                    spec = spec.and(CarSpecification.hasAccessoryByAccessoryName(accessoryDTO.getAccessoryName()));
-                }
-            }
-        }
-        return spec;
-    }
 }

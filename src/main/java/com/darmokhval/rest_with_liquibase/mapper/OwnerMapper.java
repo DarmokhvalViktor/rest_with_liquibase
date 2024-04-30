@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility method, transform Owner entity into DTO and vice versa.
+ */
 @Component
 @RequiredArgsConstructor
 public class OwnerMapper {

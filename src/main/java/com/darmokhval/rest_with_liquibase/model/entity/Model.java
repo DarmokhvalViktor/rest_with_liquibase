@@ -23,6 +23,10 @@ public class Model {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "model",fetch = FetchType.LAZY)
     private Set<Car> cars = new HashSet<>();
 
+    public Model(String modelName) {
+        this.modelName = modelName;
+    }
+
     public void addCar(Car car) {
         this.cars.add(car);
         car.setModel(this);

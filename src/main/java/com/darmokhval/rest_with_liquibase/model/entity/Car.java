@@ -1,6 +1,5 @@
 package com.darmokhval.rest_with_liquibase.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -33,8 +32,6 @@ public class Car {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private Owner owner;
-
-//    TODO create indexes in database???
 
     @ManyToMany(mappedBy = "cars")
     private List<Accessory> accessories = new ArrayList<>();

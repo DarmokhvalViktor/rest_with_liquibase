@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * main class to handle exceptions to return them as easy to read response with exception details.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -27,11 +30,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleMethodArgumentNotValidException(
             MethodArgumentNotValidException exception, WebRequest request) {
-        // Get error messages from the binding result
         List<String> errorMessages = exception.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map(FieldError::getDefaultMessage) // Get the default message for each field error
+                .map(FieldError::getDefaultMessage)
                 .collect(Collectors.toList());
 
         return formErrorResponse(HttpStatus.BAD_REQUEST, errorMessages, request);
@@ -52,25 +54,23 @@ public class GlobalExceptionHandler {
 
     private ResponseEntity<Map<String, Object>> formErrorResponse(
             HttpStatus status, List<String> messages, WebRequest request) {
-        // Create a response body with basic details and the list of validation error messages
         Map<String, Object> responseBody = new HashMap<>();
         responseBody.put("timestamp", System.currentTimeMillis());
         responseBody.put("status", status.value());
         responseBody.put("error", status.getReasonPhrase());
-        responseBody.put("messages", messages); // List of validation error messages
-        responseBody.put("path", request.getDescription(false)); // URI that caused the error
+        responseBody.put("messages", messages);
+        responseBody.put("path", request.getDescription(false));
 
         return new ResponseEntity<>(responseBody, status);
     }
 
-    // Overloaded method to handle different message types (String, List<String>)
     private ResponseEntity<Map<String, Object>> formErrorResponse(
             HttpStatus status, String message, WebRequest request) {
         Map<String, Object> responseBody = new HashMap<>();
         responseBody.put("timestamp", System.currentTimeMillis());
         responseBody.put("status", status.value());
         responseBody.put("error", status.getReasonPhrase());
-        responseBody.put("message", message); // Single message (e.g., from IllegalArgumentException)
+        responseBody.put("message", message);
         responseBody.put("path", request.getDescription(false));
 
         return new ResponseEntity<>(responseBody, status);
