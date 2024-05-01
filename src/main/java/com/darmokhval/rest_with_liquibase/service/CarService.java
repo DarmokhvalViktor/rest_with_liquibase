@@ -119,9 +119,6 @@ public class CarService {
      * @param multipartFile file to read from.
      * @return Map with failed and success count.
      */
-//    TODO drop_all.sql change in migration to not delete all DB upon start!!!
-//    TODO add in readme that we are assuming that .json file will be in valid format.
-//     Maybe invalid fields, but structure is correct.
     @Transactional
     public Map<String, Long> populateDatabaseFromFile(MultipartFile multipartFile) {
         if(multipartFile == null || multipartFile.isEmpty()) {

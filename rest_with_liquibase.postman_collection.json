@@ -21,13 +21,19 @@
 									"key": "file",
 									"contentType": "multipart/form-data",
 									"type": "file",
-									"src": "/F:/Programming/ProfitSoft_Folder/rest_with_liquibase/backend/src/main/resources/car_data2.json"
+									"src": "/F:/Programming/ProfitSoft_Folder/new_2/car_data2.json",
+									"disabled": true
 								},
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/F:/Programming/ProfitSoft_Folder/rest_with_liquibase/backend/src/main/resources/car_data.json",
+									"src": "/F:/Programming/ProfitSoft_Folder/new_2/car_data.json",
 									"disabled": true
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/F:/Programming/ProfitSoft_Folder/new_2/car_data3.json"
 								}
 							]
 						},
@@ -53,7 +59,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/cars/8",
+							"raw": "http://localhost:8080/api/cars/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -62,7 +68,7 @@
 							"path": [
 								"api",
 								"cars",
-								"8"
+								"3"
 							]
 						}
 					},
@@ -155,7 +161,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"brand\":{\r\n        \"brandName\":\"FORD\"\r\n    },\r\n    \"paginationConfig\":{\r\n        \"resultsPerPage\":\"100\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"brand\":{\r\n        \"brandName\":\"TOYOTA\"\r\n    },\r\n    \"paginationConfig\":{\r\n        \"resultsPerPage\":\"100\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -185,7 +191,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"modelId\":\"3\",\r\n    \"brandId\":\"5\",\r\n    \"ownerId\":\"2\",\r\n    \"yearOfRelease\":\"2023\",\r\n    \"mileage\": \"1\",\r\n    \"wasInAccident\":true,\r\n    \"accessoriesIds\":[1, 2, 3, 4, 7]\r\n}",
+							"raw": "{\r\n    \"modelId\":\"3\",\r\n    \"brandId\":\"5\",\r\n    \"ownerId\":\"3\",\r\n    \"yearOfRelease\":\"2023\",\r\n    \"mileage\": \"1\",\r\n    \"wasInAccident\":true,\r\n    \"accessoriesIds\":[1, 2, 3, 4, 7]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -214,7 +220,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"modelId\":\"3\",\r\n    \"brandId\":\"5\",\r\n    \"ownerId\":\"2\",\r\n    \"yearOfRelease\":\"2023\",\r\n    \"mileage\": \"1\",\r\n    \"wasInAccident\":true,\r\n    \"accessoriesIds\":[1, 6, 2, 3, 4, 7]\r\n}",
+							"raw": "{\r\n    \"modelId\":\"3\",\r\n    \"brandId\":\"5\",\r\n    \"ownerId\":\"3\",\r\n    \"yearOfRelease\":\"2023\",\r\n    \"mileage\": \"1\",\r\n    \"wasInAccident\":true,\r\n    \"accessoriesIds\":[1, 6, 2, 3, 4, 7]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

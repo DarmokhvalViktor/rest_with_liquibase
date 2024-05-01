@@ -9,7 +9,7 @@
 - To test one can use files "car_data.json"(25%+- valid records), "car_data2.json"(invalid file structure, will throw 500 error), "car_data3.json"(2 valid and 2 invalid records) in the root of the project. Or one can use RandomFileWithCarsGenerator class to generate file with custom amount of records. Example how to use this class in CarService class. File should be created in "resources" folder.
 - Postman collection lies in the root as well, name "rest_with_liquibase.postman_collection".
 - There are two liquibase scripts 000_drop_all.sql that deletes all tables from database and 001_initial_setup.sql that creates DB schema and populates with some additional data. In db.changelog-master.yaml one can change. For test purposes both scripts were executed always. 
-- Application expects valid .json file, even if they don't match expected entities. Examples:
+- Application expects valid .json file, even if they don't match expected entities. Expected array with json records. One record in array is valid, one record without array not. Examples:
 - #### Invalid structure:  
 [{
   "accessoriesIds": [
@@ -30,7 +30,7 @@
   11
   ],
   "yearOfRelease": 1997,
-  "Non_existing_field_in_entity":"some_value"
+  "Non_existing_field_in_entity":"some_value",
   "modelId": 19,
   "wasInAccident": false,
   "brandId": 15,

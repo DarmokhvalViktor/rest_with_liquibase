@@ -64,9 +64,7 @@ public class OwnerServiceTest {
 
         when(ownerRepository.findByEmail("john.doe@example.com")).thenReturn(Optional.of(existingOwner));
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            ownerService.createOwner(ownerDTO);
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> ownerService.createOwner(ownerDTO));
 
         assertEquals("Email john.doe@example.com already taken!", exception.getMessage());
     }
@@ -88,9 +86,7 @@ public class OwnerServiceTest {
 
         when(ownerRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            ownerService.updateOwner(ownerDTO, 1L);
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> ownerService.updateOwner(ownerDTO, 1L));
 
         assertEquals("Owner with ID 1 was not found!", exception.getMessage());
     }
@@ -110,9 +106,7 @@ public class OwnerServiceTest {
     public void testDeleteOwnerNotFound() {
         when(ownerRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            ownerService.deleteOwner(1L);
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> ownerService.deleteOwner(1L));
 
         assertEquals("Owner with ID 1 was not found!", exception.getMessage());
     }

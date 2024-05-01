@@ -118,7 +118,7 @@ class CarIntegrationTests {
                 .andReturn();
 
         // Deserialize the Page of CarDTOLight from the response
-        Page<CarDTOLight> cars = PageDeserializer.deserializePage(objectMapper, result, new TypeReference<List<CarDTOLight>>() {});
+        Page<CarDTOLight> cars = PageDeserializer.deserializePage(objectMapper, result, new TypeReference<>() {});
 
         // Verify that the expected cars are returned
         assertThat(cars.getContent()).hasSize(2); // Check that both cars are present
@@ -367,43 +367,6 @@ class CarIntegrationTests {
                 .andExpect(jsonPath("$.successfulWrites").value(1))
                 .andExpect(jsonPath("$.failedWrites").value(0));
     }
-
-//    @Test
-//    public void testPopulateDatabaseFromFile_InvalidData() throws Exception {
-//        // Ensure all necessary references are valid
-//        Brand validBrand = brandRepository.save(new Brand("Valid Brand"));
-//        Model validModel = modelRepository.save(new Model("Valid Model"));
-//        Owner validOwner = ownerRepository.save(new Owner("John", "john5.doe@example.com", "Doe"));
-//        List<Long> validAccessoryIds = accessoryRepository.saveAll(
-//                List.of(new Accessory("Accessory1"), new Accessory("Accessory2"))
-//        ).stream().map(Accessory::getId).toList();
-//
-//        // Prepare invalid car data with a missing `modelId`
-//        String carData = """
-//        [{
-//            "brandId": %d,
-//            "modelId": null, // Invalid modelId
-//            "ownerId": %d,
-//            "yearOfRelease": 1999,
-//            "mileage": 50000,
-//            "wasInAccident": false,
-//            "accessoriesIds": [%d, %d]
-//        }]
-//    """.formatted(validBrand.getId(), validOwner.getId(), validAccessoryIds.get(0), validAccessoryIds.get(1));
-//
-//        // Upload the invalid data
-//        MockMultipartFile multipartFile = new MockMultipartFile(
-//                "file",
-//                "car_data.json",
-//                "application/json",
-//                carData.getBytes()
-//        );
-//
-//        mockMvc.perform(multipart("/api/cars/upload")
-//                        .file(multipartFile))
-//                .andExpect(status().isOk())  // Ensure server doesn't crash
-//                .andExpect(jsonPath("$.failedWrites").value(1));  // Expect one failed write due to invalid `modelId`
-//    }
 
     @Test
     public void testGetCar_NotFound() throws Exception {

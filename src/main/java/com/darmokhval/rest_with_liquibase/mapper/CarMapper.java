@@ -6,9 +6,7 @@ import com.darmokhval.rest_with_liquibase.model.entity.Car;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Utility method to convert Car entity into one of DTOs or vice versa.

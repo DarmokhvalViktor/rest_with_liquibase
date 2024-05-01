@@ -1,23 +1,19 @@
 package com.darmokhval.rest_with_liquibase;
 
 import com.darmokhval.rest_with_liquibase.mapper.OwnerMapper;
-import com.darmokhval.rest_with_liquibase.model.dto.CarDTOLight;
 import com.darmokhval.rest_with_liquibase.model.dto.OwnerDTO;
 import com.darmokhval.rest_with_liquibase.model.entity.Owner;
 import com.darmokhval.rest_with_liquibase.repository.OwnerRepository;
-import com.darmokhval.rest_with_liquibase.utility.PageDeserializer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
 
 import java.util.List;
 

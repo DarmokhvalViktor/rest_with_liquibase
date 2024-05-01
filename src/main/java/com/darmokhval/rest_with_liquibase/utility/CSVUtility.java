@@ -13,7 +13,6 @@ import java.util.List;
 public class CSVUtility {
     /**
      * generates csv file from passed data.
-     * @throws IOException
      */
     public String generateCSVString(List<CarDTOLight> cars) throws IOException {
         StringWriter writer = new StringWriter();

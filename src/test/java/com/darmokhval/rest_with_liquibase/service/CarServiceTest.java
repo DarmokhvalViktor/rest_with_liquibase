@@ -8,7 +8,6 @@ import com.darmokhval.rest_with_liquibase.model.dto.*;
 import com.darmokhval.rest_with_liquibase.model.entity.*;
 import com.darmokhval.rest_with_liquibase.repository.*;
 import com.darmokhval.rest_with_liquibase.utility.*;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +17,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.*;
@@ -163,9 +161,7 @@ public class CarServiceTest {
     public void testFindCarNotFound() {
         when(carRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            carService.findCar(1L);
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> carService.findCar(1L));
 
         assertEquals("Car with ID 1 was not found", exception.getMessage());
     }
@@ -247,9 +243,7 @@ public class CarServiceTest {
 
         when(carRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            carService.updateCar(carDTO, 1L);
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> carService.updateCar(carDTO, 1L));
 
         assertEquals("Car with ID 1 was not found", exception.getMessage());
     }
@@ -269,9 +263,7 @@ public class CarServiceTest {
     public void testDeleteCarNotFound() {
         when(carRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            carService.deleteCar(1L);
-        });
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> carService.deleteCar(1L));
 
         assertEquals("Car with ID 1 was not found.", exception.getMessage());
     }

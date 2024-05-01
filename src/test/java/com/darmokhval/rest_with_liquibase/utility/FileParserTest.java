@@ -36,7 +36,7 @@ class FileParserTest {
         long failedWrites = fileParser.readFromFile(validMultipartFile, carDTOList, 0);
 
         assertEquals(0, failedWrites);
-        assertEquals(1, carDTOList.size()); // One valid CarDTO should be added
+        assertEquals(1, carDTOList.size());
     }
 
     @Test
@@ -60,8 +60,8 @@ class FileParserTest {
 
         long failedWrites = fileParser.readFromFile(invalidMultipartFile, carDTOList, 0);
 
-        assertEquals(1, failedWrites); // Should fail due to invalid model ID
-        assertTrue(carDTOList.isEmpty()); // Invalid data should not be added
+        assertEquals(1, failedWrites);
+        assertTrue(carDTOList.isEmpty());
     }
 
     @Test
@@ -69,9 +69,7 @@ class FileParserTest {
         Set<CarDTO> carDTOList = new HashSet<>();
         MockMultipartFile nullMultipartFile = null;
 
-        assertThrows(IOFileException.class, () -> {
-            fileParser.readFromFile(nullMultipartFile, carDTOList, 0);
-        });
+        assertThrows(IOFileException.class, () -> fileParser.readFromFile(nullMultipartFile, carDTOList, 0));
     }
 
     @Test
@@ -82,8 +80,8 @@ class FileParserTest {
 
         long failedWrites = fileParser.readFromFile(emptyMultipartFile, carDTOList, 0);
 
-        assertEquals(0, failedWrites); // No data, no parsing errors
-        assertTrue(carDTOList.isEmpty()); // No valid CarDTO should be added
+        assertEquals(0, failedWrites);
+        assertTrue(carDTOList.isEmpty());
     }
 
     @Test
@@ -103,7 +101,7 @@ class FileParserTest {
 
         long failedWrites = fileParser.readFromFile(multipartFile, carDTOList, 0);
 
-        assertEquals(1, failedWrites); // Should fail due to missing required fields
-        assertTrue(carDTOList.isEmpty()); // No valid CarDTO should be added
+        assertEquals(1, failedWrites);
+        assertTrue(carDTOList.isEmpty());
     }
 }

@@ -47,7 +47,7 @@ public class RandomFileWithCarsGenerator {
             JSONArray carArray = new JSONArray();
 
             for (int i = 0; i < numberOfRecords; i++) {
-                CarDTO car = generateRandomCar(i + 1);
+                CarDTO car = generateRandomCar();
                 JSONArray accessoryArray = new JSONArray();
                 for (Long accessoryId : generateRandomAccessoriesIds()) {
                     accessoryArray.put(accessoryId);
@@ -73,7 +73,7 @@ public class RandomFileWithCarsGenerator {
         }
     }
 
-    private CarDTO generateRandomCar(long id) {
+    private CarDTO generateRandomCar() {
         CarDTO car = new CarDTO();
         car.setModelId((long) random.nextInt(26) + 1);
         car.setBrandId((long) random.nextInt(31) + 1);
