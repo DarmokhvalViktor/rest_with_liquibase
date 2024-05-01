@@ -3,7 +3,7 @@
 ### To start this application, you need to:
 1. Open maven->package. Or use command mvn clean package inside project. That will create directory backend, where file "app.jar" is located. This file is used to create Docker image.
 2. Open Docker 
-3. Use command docker build . | docker compose up
+3. Use commands:  1.docker build . 2.docker compose up. That should run docker containers for PostgreSQL database and my application 
 
 #### Additional information:
 - To test one can use files "car_data.json"(25%+- valid records), "car_data2.json"(invalid file structure, will throw 500 error), "car_data3.json"(2 valid and 2 invalid records) in the root of the project. Or one can use RandomFileWithCarsGenerator class to generate file with custom amount of records. Example how to use this class in CarService class. File should be created in "resources" folder.
