@@ -32,6 +32,13 @@ public class Owner {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", orphanRemoval = true)
     private Set<Car> cars = new HashSet<>();
 
+    public Owner(Long id, String name, String email, String lastname) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.lastname = lastname;
+    }
+
     public Owner(String name, String email, String lastname) {
         this.name = name;
         this.email = email;

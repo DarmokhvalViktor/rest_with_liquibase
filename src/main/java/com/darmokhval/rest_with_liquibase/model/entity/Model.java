@@ -27,6 +27,11 @@ public class Model {
         this.modelName = modelName;
     }
 
+    public Model(Long id, String modelName) {
+        this.id = id;
+        this.modelName = modelName;
+    }
+
     public void addCar(Car car) {
         this.cars.add(car);
         car.setModel(this);

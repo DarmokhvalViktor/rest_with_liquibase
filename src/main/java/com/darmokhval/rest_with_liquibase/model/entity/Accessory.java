@@ -32,6 +32,11 @@ public class Accessory {
         this.accessoryName = accessoryName;
     }
 
+    public Accessory(Long id, String accessoryName) {
+        this.id = id;
+        this.accessoryName = accessoryName;
+    }
+
     // Method to add a car and ensure bidirectional consistency
     public void addCar(Car car) {
         if (!this.cars.contains(car)) {

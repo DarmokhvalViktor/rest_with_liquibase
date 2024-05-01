@@ -22,40 +22,6 @@ import java.util.Set;
 public class FileParser {
     private final ObjectMapper objectMapper;
 
-    public long readFromFile2(MultipartFile multipartFile, Set<CarDTO> carDTOList, Long failedWrites) {
-        if (multipartFile == null) {
-            throw new IllegalArgumentException("MultipartFile should not be null.");
-        }
-
-        try {
-            JsonNode rootNode = objectMapper.readTree(multipartFile.getInputStream());
-
-            if (rootNode.isArray()) {
-                for (JsonNode node : rootNode) {
-                    try {
-                        CarDTO carDTO = objectMapper.treeToValue(node, CarDTO.class);
-
-                        if (isValid(carDTO)) {
-                            carDTOList.add(carDTO);
-                        } else {
-                            failedWrites++;
-                        }
-                    } catch (Exception e) {
-                        // Log or increment the failure counter and skip this record
-                        failedWrites++;
-                        System.err.println("Skipping invalid record: " + e.getMessage());
-                    }
-                }
-            } else {
-                throw new IllegalArgumentException("Expected a JSON array.");
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Error reading from file", e);
-        }
-
-        return failedWrites;
-    }
-
     /**
      * method specifies objectMapper configuration, throws exception if error while reading from a file.
      * In successful case populates list with a valid data from a file. List is passed as argument.
@@ -81,9 +47,7 @@ public class FileParser {
      */
     private long parseData(MultipartFile multipartFile, Set<CarDTO> carDTOList, long failedWrites) throws IOException {
         JsonNode jsonNode = objectMapper.readTree(multipartFile.getInputStream());
-        System.out.println(jsonNode);
         for (JsonNode node : jsonNode) {
-            System.out.println(node);
             try {
                 // Attempt to deserialize each JSON node into a CarDTO
                 CarDTO carDTO = objectMapper.treeToValue(node, CarDTO.class);
@@ -98,6 +62,10 @@ public class FileParser {
         }
         return failedWrites;
     }
+
+    /**
+     * check if provided data is valid
+     */
     private boolean isValid(CarDTO carDTO) {
         // Perform explicit checks for required fields
         return carDTO.getModelId() != null && carDTO.getModelId() > 0

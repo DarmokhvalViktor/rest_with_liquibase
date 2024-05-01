@@ -23,6 +23,11 @@ public class Brand {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "brand")
     private Set<Car> cars = new HashSet<>();
 
+    public Brand(Long id, String brandName) {
+        this.id = id;
+        this.brandName = brandName;
+    }
+
     public Brand(String brandName) {
         this.brandName = brandName;
     }

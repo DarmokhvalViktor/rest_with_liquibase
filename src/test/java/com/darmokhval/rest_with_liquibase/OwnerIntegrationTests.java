@@ -89,9 +89,9 @@ class OwnerIntegrationTests {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
-        Page<OwnerDTO> owners = PageDeserializer.deserializePage(objectMapper, result, new TypeReference<>() {});
-        assertThat(owners.getContent().size()).isGreaterThanOrEqualTo(2);
-        assertThat(owners.getContent()).extracting(OwnerDTO::getEmail).contains("john.doe2@example.com", "jane.doe2@example.com");
+        List<OwnerDTO> owners = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<>() {});
+        assertThat(owners.size()).isGreaterThanOrEqualTo(2);
+        assertThat(owners).extracting(OwnerDTO::getEmail).contains("john.doe2@example.com", "jane.doe2@example.com");
     }
 
     @Test

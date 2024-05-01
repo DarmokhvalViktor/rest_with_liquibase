@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class PaginationUtility {
 
+    /**
+     * checks if user provided pagination in request. If not -> creates default with predefined values.
+     */
     public PaginationConfig checkIfPaginationPresent(CarSearchRequest request) {
         if(request.getPaginationConfig() == null) {
             return new PaginationConfig(0, 20);

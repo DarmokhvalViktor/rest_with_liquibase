@@ -25,7 +25,7 @@
       7,
       1
     ],
-    "InvalidRecord": "Valid_entity_inside_array",
+    "InvalidRecord": "Valid_car_record_inside_array_not_valid",
     "yearOfRelease": 1973,
     "modelId": 8,
     "wasInAccident": true,

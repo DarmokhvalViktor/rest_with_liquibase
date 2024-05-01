@@ -9,6 +9,7 @@ import com.darmokhval.rest_with_liquibase.utility.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -18,11 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.*;
 
-/**
- * Class responsible for CRUD operations upon "Car" entity.
- */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CarService {
     private final CarMapper carMapper;
     private final CarRepository carRepository;
@@ -37,18 +36,20 @@ public class CarService {
     private final CarValidator carValidator;
     private final RandomFileWithCarsGenerator generator;
 
-    //    Method creates .json file to test upload methods. File contains random data, some of that records are invalid
+//    Method creates .json file to test upload methods. File contains random data, some of that records are invalid
 //    on purpose, and these records shouldn't be written to database;
     @PostConstruct
     public void generateFile() {
         int numberOfRecords = 200;
-        String filepath = "src/main/resources/car_data.json";
+        String filepath = "src/main/resources/car_data0.json";
         generator.generateFile(numberOfRecords, filepath);
     }
 
+    /**
+     * returns page with Car entity in "light" format. If no page/number per page is specified, default values are used.
+     * If no filter criteria is specified, method will return all cars available.
+     */
     public Page<CarDTOLight> findCars(CarSearchRequest request) {
-        // If the request is null, that mean client doesn't specify some filter criteria, so
-        // create a default instance to return all cars
         if (request == null) {
             request = new CarSearchRequest(); // All fields are null, resulting in a query for all cars
         }
@@ -60,11 +61,11 @@ public class CarService {
     }
 
     /**
-     * get data from DB and transform into CSV-supported string. working.
+     * get data from DB and transform into CSV-supported string, in controller converts into bytes[] to behave as file.
      */
     public String getCarsReport(CarSearchRequest request) {
         if (request == null) {
-            request = new CarSearchRequest(); // Default to retrieving all cars
+            request = new CarSearchRequest(); // Default empty implementation to retrieve all cars
         }
         Specification<Car> spec = carSpecificationBuilder.getCarSpecification(request);
         List<CarDTOLight> filteredCars = carRepository.findAll(spec)
@@ -80,13 +81,18 @@ public class CarService {
         return csvContent;
     }
 
+    /**
+     * Return full info about one Car entity, if ID is valid, otherwise -> throws IAE.
+     */
     public CarDTOFullInfo findCar(Long id) {
         Car car = carRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException(String.format("Car with ID %d was not found", id)));
         return carMapper.carEntityToFullDTO(car);
     }
 
-//    Creating, valid fields.
+    /**
+     * Creates Car record in database if fields are valid.
+     */
     @Transactional
     public CarDTO createCar(CarDTO carDTO) {
         Car car = new Car();
@@ -94,7 +100,10 @@ public class CarService {
         return carMapper.carEntityToDTO(car);
     }
 
-    //update working.
+    /**
+     * Updates Car entity by ID if new data passed and ID are valid, else throws IAE.
+     * Uses utility method to safely remove relations from entities.
+     */
     @Transactional
     public CarDTO updateCar(CarDTO carDTO, Long id) {
         Car car = carRepository.findById(id).orElseThrow(
@@ -105,13 +114,14 @@ public class CarService {
     }
 
     /**
-     * reading from a file, and write to DB if fields is valid.
+     * Reading from a file, and writes records into DB if fields are valid.
+     * Uses utility methods to parse file, validate result and assign values.
      * @param multipartFile file to read from.
      * @return Map with failed and success count.
      */
+//    TODO drop_all.sql change in migration to not delete all DB upon start!!!
 //    TODO add in readme that we are assuming that .json file will be in valid format.
 //     Maybe invalid fields, but structure is correct.
-//     Plus check and add comments into service layers. Add unit tests for service layers???
     @Transactional
     public Map<String, Long> populateDatabaseFromFile(MultipartFile multipartFile) {
         if(multipartFile == null || multipartFile.isEmpty()) {
@@ -135,18 +145,23 @@ public class CarService {
                     failedWrites++;
                 }
             } catch (IllegalArgumentException e) {
-                System.out.println("Error processing car: " + e.getMessage());
+                log.error("\"Error processing car: \" + e.getMessage()");
                 failedWrites++;
             }
 
         }
-        System.out.println(failedWrites + "Failed writes");
+        log.info(failedWrites + "Failed writes");
         resultMap.put("successfulWrites", successfulWrites);
         resultMap.put("failedWrites", failedWrites);
         return resultMap;
     }
 
     //    Working, delete if exists, when wrong id handled too.
+
+    /**
+     * Deletes Car record from a database if passed ID is valid, otherwise -> throws IAE.
+     * Upon delete process removing all existing relations that are connected to entity.
+     */
     @Transactional
     public String deleteCar(Long id) {
         if(id == null) {
@@ -166,19 +181,20 @@ public class CarService {
     }
 
     /**
-     * utility, save entity into DB if validation passes. Else throws IAE.
+     * Utility method, saves entity into DB if validation passes, otherwise throws IAE.
      */
     private Car processCar(CarDTO carDTO, Car car) {
         String error = carValidator.validate(carDTO);
         if (!error.isBlank()) {
             throw new IllegalArgumentException(error);
         }
-        System.out.println("Car validation is correct, moving to assigning values!!!");
+        log.info("Car validation is correct, moving to assigning values");
         return assignValues(carDTO, car);
     }
+//    TODO test how parse file with only 1 record, or without array.
 
     /**
-     * assigns values from dto to entity. Used in conjunction with validation method.
+     * Assigns values from dto to entity. Used in conjunction with validation method.
      */
     private Car assignValues(CarDTO carDTO, Car car) {
         Model model = modelRepository.findById(carDTO.getModelId()).get();
@@ -205,14 +221,14 @@ public class CarService {
     }
 
     /**
-     * In this method we are detaching entities/removing if they are not in a new Set passed by user.
+     * In this method we are detaching entities/removing if they are not in a new List passed by user.
      */
     private void detachUnwantedAccessories(CarDTO carDTO, Car car) {
-        System.out.println("detachUnwantedAccessories executed!!!");
+        log.info("detachUnwantedAccessories executed");
         List<Long> newAccessoryIds = new ArrayList<>(carDTO.getAccessoriesIds());
-        List<Accessory> tempSet = new ArrayList<>(car.getAccessories());
+        List<Accessory> tempList = new ArrayList<>(car.getAccessories());
 
-        for (Accessory existingAccessory : tempSet) {
+        for (Accessory existingAccessory : tempList) {
             if (!newAccessoryIds.contains(existingAccessory.getId())) {
                 car.removeAccessory(existingAccessory.getId());
                 existingAccessory.removeCar(car.getId());

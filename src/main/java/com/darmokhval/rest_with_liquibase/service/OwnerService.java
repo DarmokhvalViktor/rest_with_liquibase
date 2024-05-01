@@ -5,13 +5,9 @@ import com.darmokhval.rest_with_liquibase.model.dto.OwnerDTO;
 import com.darmokhval.rest_with_liquibase.model.entity.Accessory;
 import com.darmokhval.rest_with_liquibase.model.entity.Car;
 import com.darmokhval.rest_with_liquibase.model.entity.Owner;
-import com.darmokhval.rest_with_liquibase.repository.AccessoryRepository;
-import com.darmokhval.rest_with_liquibase.repository.CarRepository;
 import com.darmokhval.rest_with_liquibase.repository.OwnerRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,8 +20,7 @@ public class OwnerService {
     private final OwnerRepository ownerRepository;
     private final OwnerMapper ownerMapper;
 
-//    TODO unit tests for owner and car services. and readme!!! and postman collection.
-//     and check again if this program is working correctly.
+
     public List<OwnerDTO> getOwners() {
         return ownerRepository.findAll().stream().map(ownerMapper::convertOwnerToDTO).toList();
     }
@@ -42,7 +37,7 @@ public class OwnerService {
     }
 
     /**
-     * method that updates user by given ID, otherwise throws IAE.
+     * method updates user by given ID, if ID null/empty/negative number -> throws IAE.
      * Checks if email provided already in use, if already in database and not related to current user -> throws IAE.
      */
     @Transactional
@@ -64,7 +59,7 @@ public class OwnerService {
     }
 
     /**
-     * method deletes user from database if user can be found by ID.
+     * deletes user from database if user can be found by ID.
      * explicitly deletes all other entities that related to user (car), and makes sure to keep relations consistent.
      */
     @Transactional

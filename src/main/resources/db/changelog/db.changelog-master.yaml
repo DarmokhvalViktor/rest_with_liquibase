@@ -1,0 +1,24 @@
+databaseChangeLog:
+#  Test environment only, using to delete-create tables on each application run.
+#  - changeSet:
+#      id: drop_all
+#      author: Darmokhval
+#      runAlways: true
+#      changes:
+#        - sqlFile:
+#            path: db/changelog/000_drop_all.sql
+#
+#  - changeSet:
+#      id: initial_setup
+#      author: Darmokhval
+#      runAlways: true
+#      changes:
+#        - sqlFile:
+#            path: db/changelog/001_initial_setup.sql
+
+
+# "Production" environment.
+  - include:
+      file: db/changelog/000_drop_all.sql
+  - include:
+      file: db/changelog/001_initial_setup.sql

@@ -7,12 +7,13 @@ import com.darmokhval.rest_with_liquibase.repository.CarSpecification;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
+/**
+ * Creates specification from user's input to return records that matches user's input.
+ * Method verbose on purpose to avoid NullPointerException.
+ */
 @Component
 public class CarSpecificationBuilder {
-    /**
-     *create specification from user's input to return records that matches input fields.
-     * Method verbose on purpose to avoid NullPointerException.
-     */
+
     public Specification<Car> getCarSpecification(CarSearchRequest request) {
         Specification<Car> spec = Specification.where(null); //starting with empty specs
         if(request == null) {

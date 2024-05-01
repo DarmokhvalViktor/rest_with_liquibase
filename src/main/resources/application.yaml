@@ -1,6 +1,6 @@
 spring:
   config:
-    import: classpath:secrets.yml
+    import: classpath:secrets.yaml
   application:
     name: "rest_with_liquibase"
   datasource:
@@ -9,7 +9,7 @@ spring:
     password: ${dockerPostgres.password}
     driver-class-name: org.postgresql.Driver
   liquibase:
-    change-log: classpath:/db/changelog/db.changelog-master.yml
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
   jpa:
     show-sql: true
     properties:
