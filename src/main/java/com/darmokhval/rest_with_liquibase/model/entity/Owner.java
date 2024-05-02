@@ -30,7 +30,7 @@ public class Owner {
     private String lastname;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", orphanRemoval = true)
-    private Set<Car> cars = new HashSet<>();
+    private List<Car> cars = new ArrayList<>();
 
     public Owner(Long id, String name, String email, String lastname) {
         this.id = id;

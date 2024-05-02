@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockMultipartFile;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileParserTest {
@@ -16,7 +16,7 @@ class FileParserTest {
 
     @Test
     void testReadFromFile_ValidJson() {
-        Set<CarDTO> carDTOList = new HashSet<>();
+        List<CarDTO> carDTOList = new ArrayList<>();
         String validJsonContent = """
             [
                 {
@@ -41,7 +41,7 @@ class FileParserTest {
 
     @Test
     void testReadFromFile_InvalidJson() {
-        Set<CarDTO> carDTOList = new HashSet<>();
+        List<CarDTO> carDTOList = new ArrayList<>();
         String invalidJsonContent = """
             [
                 {
@@ -66,7 +66,7 @@ class FileParserTest {
 
     @Test
     void testReadFromFile_IOError() {
-        Set<CarDTO> carDTOList = new HashSet<>();
+        List<CarDTO> carDTOList = new ArrayList<>();
         MockMultipartFile nullMultipartFile = null;
 
         assertThrows(IOFileException.class, () -> fileParser.readFromFile(nullMultipartFile, carDTOList, 0));
@@ -74,7 +74,7 @@ class FileParserTest {
 
     @Test
     void testReadFromFile_EmptyFile() {
-        Set<CarDTO> carDTOList = new HashSet<>();
+        List<CarDTO> carDTOList = new ArrayList<>();
         MockMultipartFile emptyMultipartFile = new MockMultipartFile(
                 "file", "cars.json", "application/json", new byte[0]);
 
@@ -86,7 +86,7 @@ class FileParserTest {
 
     @Test
     void testReadFromFile_MissingRequiredFields() {
-        Set<CarDTO> carDTOList = new HashSet<>();
+        List<CarDTO> carDTOList = new ArrayList<>();
         String missingFieldsJson = """
             [
                 {

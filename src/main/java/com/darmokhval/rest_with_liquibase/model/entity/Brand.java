@@ -21,7 +21,7 @@ public class Brand {
     private String brandName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "brand")
-    private Set<Car> cars = new HashSet<>();
+    private List<Car> cars = new ArrayList<>();
 
     public Brand(Long id, String brandName) {
         this.id = id;

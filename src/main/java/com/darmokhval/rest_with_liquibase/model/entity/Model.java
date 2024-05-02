@@ -21,7 +21,7 @@ public class Model {
     private String modelName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "model",fetch = FetchType.LAZY)
-    private Set<Car> cars = new HashSet<>();
+    private List<Car> cars = new ArrayList<>();
 
     public Model(String modelName) {
         this.modelName = modelName;

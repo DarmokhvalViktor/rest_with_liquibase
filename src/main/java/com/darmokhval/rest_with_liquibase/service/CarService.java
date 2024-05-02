@@ -128,7 +128,7 @@ public class CarService {
         long successfulWrites = 0;
         long failedWrites = 0;
 
-        Set<CarDTO> carDTOList = new HashSet<>();
+        List<CarDTO> carDTOList = new ArrayList<>();
         failedWrites = fileParser.readFromFile(multipartFile, carDTOList, failedWrites);
 
         for(CarDTO carDTO: carDTOList) {
@@ -167,7 +167,7 @@ public class CarService {
         Optional<Car> optionalCar = carRepository.findById(id);
         if(optionalCar.isPresent()) {
             Car car = optionalCar.get();
-            for(Accessory accessory: new HashSet<>(car.getAccessories())) {
+            for(Accessory accessory: new ArrayList<>(car.getAccessories())) {
                 car.removeAccessory(accessory.getId());
                 accessory.removeCar(car.getId());
             }
@@ -188,7 +188,6 @@ public class CarService {
         log.info("Car validation is correct, moving to assigning values");
         return assignValues(carDTO, car);
     }
-//    TODO test how parse file with only 1 record, or without array.
 
     /**
      * Assigns values from dto to entity. Used in conjunction with validation method.

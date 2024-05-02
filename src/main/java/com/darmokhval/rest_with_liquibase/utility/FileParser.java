@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Set;
+import java.util.List;
 
 /**
  * class for parsing .json file and convert records into CarDTO objects.
@@ -25,7 +25,7 @@ public class FileParser {
      * method specifies objectMapper configuration, throws exception if error while reading from a file.
      * In successful case populates list with a valid data from a file. List is passed as argument.
      */
-    public long readFromFile(MultipartFile multipartFile, Set<CarDTO> carDTOList, long failedWrites) {
+    public long readFromFile(MultipartFile multipartFile, List<CarDTO> carDTOList, long failedWrites) {
         if (multipartFile == null) {
             throw new IOFileException("MultipartFile is null");
         }
@@ -44,7 +44,7 @@ public class FileParser {
      * method reads file and writes valid records into list that passed as argument.
      * returns Long number how many records were not valid/incomplete
      */
-    private long parseData(MultipartFile multipartFile, Set<CarDTO> carDTOList, long failedWrites) throws IOException {
+    private long parseData(MultipartFile multipartFile, List<CarDTO> carDTOList, long failedWrites) throws IOException {
         JsonNode jsonNode = objectMapper.readTree(multipartFile.getInputStream());
         for (JsonNode node : jsonNode) {
             try {
