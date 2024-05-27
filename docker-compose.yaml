@@ -10,8 +10,10 @@ services:
     volumes:
       - ./postgres_database:/var/lib/postgresql/data
     restart: on-failure
+    networks:
+      - my_shared_network
 
-  backend_app:
+  backend-app:
     image: rest_with_liquibase
     build:
       context: .
@@ -21,3 +23,9 @@ services:
       - ./backend:/app
     restart: on-failure
     command: sh -c "/wait-for-it.sh postgres:5432 -- java -jar app.jar"
+    networks:
+      - my_shared_network
+
+networks:
+  my_shared_network:
+    external: true
